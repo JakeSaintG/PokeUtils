@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+@import "@healthcatalyst/cashmere/scss/cashmere";
+@import "@healthcatalyst/cashmere/hcicons/hcicons";
+
+body {
+    margin: 0;
+}
+
+.navbar-app img,
+.navbar-brand img {
+    height: 55px !important;
+}

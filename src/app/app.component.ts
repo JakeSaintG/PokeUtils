@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'PokeUtils';
+  username = 'J\'onn J\'onzz';
+  organization = 'Justice League';
 }
