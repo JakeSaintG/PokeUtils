@@ -7,12 +7,12 @@ export interface ITeamMember {
         megaForms: string[]
     },
     canGigantamax: boolean,
-    stats: {
+    baseStats: {
         hp: number,
-        attack: number,
-        defense: number,
+        atk: number,
+        def: number,
         spAtk: number,
         spDef: number,
-        speed: number
+        spd: number
     }
   }

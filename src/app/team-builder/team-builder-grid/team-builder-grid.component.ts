@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ITeamMember } from './models/ITeamMember';
+import { StatNamePipe } from './pipes/stat-name.pipe';
 
 @Component({
   selector: 'pkutil-team-builder-grid',
@@ -20,13 +21,13 @@ export class TeamBuilderGridComponent implements OnInit {
         megaForms: []
       },
       canGigantamax: false,
-      stats: {
+      baseStats: {
         hp: 50,
-        attack: 70,
-        defense: 50,
+        atk: 70,
+        def: 50,
         spAtk: 50,
         spDef: 50,
-        speed: 40
+        spd: 40
     }
     },
     {
@@ -41,13 +42,13 @@ export class TeamBuilderGridComponent implements OnInit {
         megaForms: ["Mega"]
       },
       canGigantamax: false,
-      stats: {
+      baseStats: {
         hp: 100,
-        attack: 100,
-        defense: 100,
+        atk: 100,
+        def: 100,
         spAtk: 100,
         spDef: 100,
-        speed: 100
+        spd: 100
     }
     },
     {
@@ -62,13 +63,13 @@ export class TeamBuilderGridComponent implements OnInit {
         megaForms: ["Mega X", "Mega Y"]
       },
       canGigantamax: true,
-      stats: {
+      baseStats: {
         hp: 100,
-        attack: 100,
-        defense: 100,
+        atk: 100,
+        def: 100,
         spAtk: 100,
         spDef: 100,
-        speed: 100
+        spd: 100
     }
     },
     {
@@ -82,13 +83,13 @@ export class TeamBuilderGridComponent implements OnInit {
         megaForms: []
       },
       canGigantamax: true,
-      stats: {
+      baseStats: {
         hp: 35,
-        attack: 55,
-        defense: 30,
+        atk: 55,
+        def: 30,
         spAtk: 50,
         spDef: 40,
-        speed: 90
+        spd: 90
     }
     }
     ,
@@ -104,13 +105,13 @@ export class TeamBuilderGridComponent implements OnInit {
         megaForms: ["Mega"]
       },
       canGigantamax: true,
-      stats: {
+      baseStats: {
         hp: 60,
-        attack: 65,
-        defense: 80,
+        atk: 65,
+        def: 80,
         spAtk: 170,
         spDef: 95,
-        speed: 130
+        spd: 130
       }
     }
   ];

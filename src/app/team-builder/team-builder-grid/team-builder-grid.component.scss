@@ -64,17 +64,33 @@ $water: #56B0FF;
 .member-header {
     width: 20%;
     height: 100%;
-    padding: 1rem;
+    padding: .5rem;
     margin: 1rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-}
+    align-content: center;
 
-.types {
-    display: flex;
-    flex-direction: row;
-    margin: 1rem;
+    h2 {
+        text-align: center;
+        margin: 0;
+    }
+
+    img {
+        height: 120px;
+        width: 120px;
+        margin: auto;
+    }
+
+    div {
+        display: flex;
+        align-content: center;
+        flex-direction: row;
+        margin: .5rem;
+
+        p {
+            margin: auto;
+        }
+    }
 }
 
 .type-icon {
@@ -94,14 +110,21 @@ $water: #56B0FF;
 }
 
 .stats {
-    border: 3px solid Red;
     display: flex;
+    flex-direction: column;
+    width: 100%;
 
-    * {
+    .stat span:first-child {
+        width: 10%;
+        border-right: #CCCCCC solid 2px;
+    }
+
+    .stat {
         display: flex;
-        flex-direction: column;
-        align-content: space-between;
         margin: auto 0;
+        height: 2rem;
+        align-content: space-between;
+        border: 3px solid Red;
     }
 
 }

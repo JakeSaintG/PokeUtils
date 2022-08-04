@@ -3,16 +3,14 @@
         <hc-tile class="member-header">
             <h2>{{pokemon.name}}</h2>
             <img src="{{pokemon.img}}" alt="Image of {{pokemon.name}}">
-            <div class="types">
+            <div>
                 <p *ngFor = 'let type of pokemon.types' class="type-icon {{type}}">{{type}}</p>
             </div>
         </hc-tile>
         <div class="stats" >
-            <div class="stat-names" >
-                <p *ngFor = 'let stat of pokemon.stats | keyvalue'>{{stat.key}}</p>
-            </div>
-            <div class="stat-value" >
-                <div *ngFor = 'let stat of pokemon.stats | keyvalue'>{{stat.value}}</div>
+            <div class="stat" *ngFor = 'let stat of pokemon.baseStats | keyvalue'>
+                <span> {{stat.key | statname }}</span>
+                <span>{{stat.value}}</span>
             </div>
         </div>
         <div class="pokemon-options" >
