@@ -7,7 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = "PokéUtils"
-  
   username = 'Ash Ketchum';
   organization = 'Indigo Plateau';
 }
