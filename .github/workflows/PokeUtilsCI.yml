@@ -33,26 +33,27 @@ jobs:
         node-version: 16.x
         cache: 'npm'
     
-    - name: Cache node modules
-      id: cache-nodemodules
-      uses: actions/cache@v2
-      env:
-        cache-name: cache-node-modules
-      with:
-        path: node_modules 
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-build-${{ env.cache-name }}-
-          ${{ runner.os }}-build-
-          ${{ runner.os }}-
+    # - name: Cache node modules
+    #   id: cache-nodemodules
+    #   uses: actions/cache@v2
+    #   env:
+    #     cache-name: cache-node-modules
+    #   with:
+    #     path: node_modules 
+    #     key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+    #     restore-keys: |
+    #       ${{ runner.os }}-build-${{ env.cache-name }}-
+    #       ${{ runner.os }}-build-
+    #       ${{ runner.os }}-
     
     - name: Install Dependencies
-      if:
-        steps.cache-nodemodules.outputs.cache-hit != 'true'
+      # if:
+      #   steps.cache-nodemodules.outputs.cache-hit != 'true'
       run: npm ci
     
     - name: Build
-      run: npm run build -- --prod
+      run: npm run build-prod
+      # run: npm run build -- --prod
 
     #### ================= TODO: Test step hangs because of test suite not being able to open Chrome.=================
     # - name: Test
@@ -64,6 +65,7 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v1
       with:
+        # Upload folder produced by ng build
         path: 'dist/PokeUtils'
     
     - name: Deploy to GitHub Pages
