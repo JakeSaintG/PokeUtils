@@ -52,7 +52,7 @@ jobs:
       run: npm ci
     
     - name: Build
-      run: npm run build-prod
+      run: npm run build-gh
       # run: npm run build -- --prod
 
     #### ================= TODO: Test step hangs because of test suite not being able to open Chrome.=================
