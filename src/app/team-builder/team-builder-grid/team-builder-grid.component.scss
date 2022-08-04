@@ -113,24 +113,29 @@ $water: #56B0FF;
     display: flex;
     flex-direction: column;
     width: 100%;
-
-    .stat span:first-child {
-        width: 10%;
-        border-right: #CCCCCC solid 2px;
-    }
+    padding-right: .5rem;
 
     .stat {
         display: flex;
         margin: auto 0;
-        height: 2rem;
+        height: 2.5rem;
+        text-align: center;
         align-content: space-between;
-        border: 3px solid Red;
+        border: #CCCCCC solid 2px;
+
+        span:first-child {
+            width: 10%;
+        }
+
+        span {
+            margin: auto 0;
+        }
     }
 
 }
 
 .pokemon-options {
-    width: 4rem;
+    width: 5rem;
     background-color: #CCCCCC;
     display: flex;
     flex-direction: column;

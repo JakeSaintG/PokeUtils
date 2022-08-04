@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ITeamMember } from './models/ITeamMember';
-import { StatNamePipe } from './pipes/stat-name.pipe';
 
 @Component({
   selector: 'pkutil-team-builder-grid',
@@ -28,7 +27,7 @@ export class TeamBuilderGridComponent implements OnInit {
         spAtk: 50,
         spDef: 50,
         spd: 40
-    }
+      }
     },
     {
       name: "Swampert",
@@ -44,12 +43,12 @@ export class TeamBuilderGridComponent implements OnInit {
       canGigantamax: false,
       baseStats: {
         hp: 100,
-        atk: 100,
-        def: 100,
-        spAtk: 100,
-        spDef: 100,
-        spd: 100
-    }
+        atk: 110,
+        def: 90,
+        spAtk: 85,
+        spDef: 90,
+        spd: 60
+      }
     },
     {
       name: "Charizard",
@@ -64,13 +63,13 @@ export class TeamBuilderGridComponent implements OnInit {
       },
       canGigantamax: true,
       baseStats: {
-        hp: 100,
-        atk: 100,
-        def: 100,
-        spAtk: 100,
-        spDef: 100,
+        hp: 78,
+        atk: 84,
+        def: 78,
+        spAtk: 109,
+        spDef: 85,
         spd: 100
-    }
+      }
     },
     {
       name: "Pikachu",
@@ -90,9 +89,8 @@ export class TeamBuilderGridComponent implements OnInit {
         spAtk: 50,
         spDef: 40,
         spd: 90
-    }
-    }
-    ,
+      }
+    },
     {
       name: "Gengar",
       img: "https://www.serebii.net/swordshield/pokemon/094.png",

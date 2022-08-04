@@ -11,6 +11,7 @@ import { TeamBuilderComponent } from './team-builder/team-builder.component';
 import { LoadModalComponent } from './team-builder/team-builder-menu/menu-modals/load-modal/load-modal.component';
 import { GenerateCardModalComponent } from './team-builder/team-builder-menu/menu-modals/generate-card-modal/generate-card-modal.component';
 import { StatNamePipe } from './team-builder/team-builder-grid/pipes/stat-name.pipe';
+import { StatValuePipe } from './team-builder/team-builder-grid/pipes/stat-value.pipe';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { StatNamePipe } from './team-builder/team-builder-grid/pipes/stat-name.p
     TeamBuilderComponent,
     LoadModalComponent,
     GenerateCardModalComponent,
-    StatNamePipe
+    StatNamePipe,
+    StatValuePipe
   ],
   imports: [
     BrowserModule,
