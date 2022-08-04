@@ -1,9 +1,35 @@
-<hc-tile>
+<hc-tile class="team-container">
     <div *ngFor = 'let pokemon of tempPokemon' class="team-member">
-        <h2>{{pokemon.name}}</h2>
-        <img src="{{pokemon.img}}" alt="Image of {{pokemon.name}}">
-        <div class="types">
-            <p *ngFor = 'let type of pokemon.types' class="type-icon {{type}}">{{type}}</p>
+        <hc-tile class="member-header">
+            <h2>{{pokemon.name}}</h2>
+            <img src="{{pokemon.img}}" alt="Image of {{pokemon.name}}">
+            <div class="types">
+                <p *ngFor = 'let type of pokemon.types' class="type-icon {{type}}">{{type}}</p>
+            </div>
+        </hc-tile>
+        <div class="stats" >
+            <div class="stat-names" >
+                <p *ngFor = 'let stat of pokemon.stats | keyvalue'>{{stat.key}}</p>
+            </div>
+            <div class="stat-value" >
+                <div *ngFor = 'let stat of pokemon.stats | keyvalue'>{{stat.value}}</div>
+            </div>
+        </div>
+        <div class="pokemon-options" >
+            <button hc-button class="remove-btn" buttonStyle="destructive">
+                <hc-icon hcMenuIcon fontSet="fa" fontIcon="fa-trash"></hc-icon>
+            </button>
+            <div *ngIf="pokemon.megaData.canMegaEvo">
+                <button hc-button class="mega-btn" buttonStyle="primary-alt" [hcTooltip]="megaForm" *ngFor="let megaForm of pokemon.megaData.megaForms" name="peas">
+                    <img src="assets/mega-evo.webp" height="30px" alt="Mega Evolution Icon">
+                </button>
+            </div>
+            <button hc-button class="dyna-btn" buttonStyle="secondary" buttonStyle="pink" [hcTooltip]="dynaTooltip">
+                <img src="assets/dynamax.webp" height="30px" alt="Dynamax Icon">
+            </button>
+            <button hc-button class="giga-btn" buttonStyle="secondary" buttonStyle="pink" [hcTooltip]="gigaTooltip" *ngIf="pokemon.canGigantamax">
+                <hc-icon hcMenuIcon fontSet="fa" fontIcon="fa-cloud"></hc-icon>
+            </button>
         </div>
     </div>
 </hc-tile> 

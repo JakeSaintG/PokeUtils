@@ -19,17 +19,56 @@ $ghost: #7975D7;
 $ice: #96F1FF;
 $psychic: #FA64B5;
 $water: #56B0FF;
+.bug {background-color: $bug} 
+.electric  {background-color: $electric} 
+.fire {background-color: $fire} 
+.grass {background-color: $grass} 
+.normal {background-color: $normal} 
+.rock {background-color: $rock} 
+.dark {background-color: $dark} 
+.fairy {background-color: $fairy} 
+.flying {background-color: $flying} 
+.ground {background-color: $ground} 
+.poison {background-color: $poison} 
+.steel {background-color: $steel} 
+.dragon {background-color: $dragon} 
+.fighting {background-color: $fighting} 
+.ghost {background-color: $ghost} 
+.ice {background-color: $ice} 
+.psychic {background-color: $psychic} 
+.water {background-color: $water}
 /* ============================================
             Types and Colors Key
 ============================================*/
 
-hc-tile {
+:host {
+    display: block;
     margin: 1rem;
+}
+
+.team-container {
     padding: 1rem;
 }
 
+.team-member:first-child {
+    margin-top: 0;
+}
 .team-member {
-    border: 1px solid black;
+    margin-top: 1rem;
+    border: 1px solid #CCCCCC;
+    // justify-content: space-between;
+    display: flex;
+    
+}
+
+.member-header {
+    width: 20%;
+    height: 100%;
+    padding: 1rem;
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .types {
@@ -43,49 +82,64 @@ hc-tile {
     color: white;
     text-transform: uppercase;
     font-size: 13px;
-    font-weight: bolder;
+    font-weight: 800;
     padding: 3px;
     margin: 0 8px;
     border: 3px solid white;
     border-radius: 5px;
     box-shadow: 0px 0px 4px 3px #000000;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.61);
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.71);
     border-radius: 17px;
     font-family: 'Josefin Sans', sans-serif;
 }
 
-.bug {background-color: $bug} 
+.stats {
+    border: 3px solid Red;
+    display: flex;
 
-.electric  {background-color: $electric} 
+    * {
+        display: flex;
+        flex-direction: column;
+        align-content: space-between;
+        margin: auto 0;
+    }
 
-.fire {background-color: $fire} 
+}
 
-.grass {background-color: $grass} 
+.pokemon-options {
+    width: 4rem;
+    background-color: #CCCCCC;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
 
-.normal {background-color: $normal} 
+    div {
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+    }
 
-.rock {background-color: $rock} 
+    div button {
+        margin: 5px auto;
+    }
 
-.dark {background-color: $dark} 
+    div button:nth-child(3) {
+        margin: 0 auto 5px auto;
+    }
 
-.fairy {background-color: $fairy} 
+    button {
+        min-width: 35px;
+        width: 35px;
+        margin: auto;
 
-.flying {background-color: $flying} 
+        hc-icon {
+            color: #000000;
+        }
+    }
 
-.ground {background-color: $ground} 
-
-.poison {background-color: $poison} 
-
-.steel {background-color: $steel} 
-
-.dragon {background-color: $dragon} 
-
-.fighting {background-color: $fighting} 
-
-.ghost {background-color: $ghost} 
-
-.ice {background-color: $ice} 
-
-.psychic {background-color: $psychic} 
-
-.water {background-color: $water} 
+    .giga-btn {
+        hc-icon {
+            color:#a082dd;
+        }
+    }
+}
