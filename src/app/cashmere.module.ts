@@ -5,7 +5,8 @@ import {
     NavbarModule,
     AppSwitcherModule,
     IconModule,
-    PopModule
+    PopModule,
+    ButtonModule
 } from '@healthcatalyst/cashmere';
 
 @NgModule({
@@ -15,7 +16,8 @@ import {
     NavbarModule,
     AppSwitcherModule,
     IconModule,
-    PopModule
+    PopModule,
+    ButtonModule
   ]
 })
 export class CashmereModule {}

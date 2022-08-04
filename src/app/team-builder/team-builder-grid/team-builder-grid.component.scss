@@ -1,0 +1,91 @@
+/* ============================================
+            Types and Colors Key
+============================================*/
+$bug: #C3D21F;
+$electric: #FEE844;
+$fire: #FA5442;
+$grass: #86D04C;
+$normal: #B8B7A9;
+$rock: #CEBD72;
+$dark: #8D6855;
+$fairy: #F9ADFF;
+$flying: #79A3FF;
+$ground: #F0CF5C;
+$poison: #AA5DA1;
+$steel: #C4C2D9;
+$dragon: #8975FF;
+$fighting: #A75545;
+$ghost: #7975D7;
+$ice: #96F1FF;
+$psychic: #FA64B5;
+$water: #56B0FF;
+/* ============================================
+            Types and Colors Key
+============================================*/
+
+hc-tile {
+    margin: 1rem;
+    padding: 1rem;
+}
+
+.team-member {
+    border: 1px solid black;
+}
+
+.types {
+    display: flex;
+    flex-direction: row;
+    margin: 1rem;
+}
+
+.type-icon {
+    display: inline-block;
+    color: white;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: bolder;
+    padding: 3px;
+    margin: 0 8px;
+    border: 3px solid white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 4px 3px #000000;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.61);
+    border-radius: 17px;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.bug {background-color: $bug} 
+
+.electric  {background-color: $electric} 
+
+.fire {background-color: $fire} 
+
+.grass {background-color: $grass} 
+
+.normal {background-color: $normal} 
+
+.rock {background-color: $rock} 
+
+.dark {background-color: $dark} 
+
+.fairy {background-color: $fairy} 
+
+.flying {background-color: $flying} 
+
+.ground {background-color: $ground} 
+
+.poison {background-color: $poison} 
+
+.steel {background-color: $steel} 
+
+.dragon {background-color: $dragon} 
+
+.fighting {background-color: $fighting} 
+
+.ghost {background-color: $ghost} 
+
+.ice {background-color: $ice} 
+
+.psychic {background-color: $psychic} 
+
+.water {background-color: $water} 

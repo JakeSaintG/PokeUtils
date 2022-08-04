@@ -1,0 +1,9 @@
+<hc-tile>
+    <div *ngFor = 'let pokemon of tempPokemon' class="team-member">
+        <h2>{{pokemon.name}}</h2>
+        <img src="{{pokemon.img}}" alt="Image of {{pokemon.name}}">
+        <div class="types">
+            <p *ngFor = 'let type of pokemon.types' class="type-icon {{type}}">{{type}}</p>
+        </div>
+    </div>
+</hc-tile>
