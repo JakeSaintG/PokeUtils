@@ -1,6 +1,6 @@
 <hc-navbar
-  appIcon="https://jakesaintg.github.io/pokemon_teambuilder/imgs/Pokemon_logo.webp"
-  brandIcon="https://archives.bulbagarden.net/media/upload/9/95/GO_Great_Ball.png"
+  appIcon="../assets/appIcon.png"
+  brandIcon="../assets/brandIcon.png"
   [fixedTop]="true"
 >
   
@@ -40,9 +40,7 @@
     </div>
   </hc-navbar-dropdown>
 
-  
-  <hc-navbar-link href="http://example.com" target="_blank" linkText="Test"></hc-navbar-link>
-
+  <hc-navbar-link href="http://example.com" target="_blank" linkText="" >Poké<strong>Utils</strong></hc-navbar-link>
 
   <hc-icon
     class="hc-navbar-icon"
@@ -72,7 +70,6 @@
     <hc-icon fontSet="fa" fontIcon="fa-angle-down"></hc-icon>
   </div>
 </hc-navbar>
-
 <hc-pop
   #options
   [autoCloseOnContentClick]="true"

@@ -5,7 +5,14 @@ body {
     margin: 0;
 }
 
-.navbar-app img,
+.navbar-app img {
+    height: 45px !important;
+}
+
 .navbar-brand img {
     height: 55px !important;
+}
+
+.navbar-link a {
+    color: white;
 }

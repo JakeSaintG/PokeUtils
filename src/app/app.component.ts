@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  username = 'J\'onn J\'onzz';
-  organization = 'Justice League';
+  username = 'Ash Ketchum';
+  organization = 'Indigo Plateau';
 }
