@@ -6,7 +6,10 @@ import {
     AppSwitcherModule,
     IconModule,
     PopModule,
-    ButtonModule
+    ButtonModule,
+    AccordionModule,
+    ModalModule,
+    BannerModule
 } from '@healthcatalyst/cashmere';
 
 @NgModule({
@@ -17,7 +20,10 @@ import {
     AppSwitcherModule,
     IconModule,
     PopModule,
-    ButtonModule
+    ButtonModule,
+    AccordionModule,
+    ModalModule,
+    BannerModule
   ]
 })
 export class CashmereModule {}

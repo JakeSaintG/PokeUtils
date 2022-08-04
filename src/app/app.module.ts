@@ -8,13 +8,15 @@ import { CashmereModule } from './cashmere.module';
 import { TeamBuilderGridComponent } from './team-builder/team-builder-grid/team-builder-grid.component';
 import { TeamBuilderMenuComponent } from './team-builder/team-builder-menu/team-builder-menu.component';
 import { TeamBuilderComponent } from './team-builder/team-builder.component';
+import { LoadModalComponent } from './team-builder/team-builder-menu/menu-modals/load-modal/load-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TeamBuilderMenuComponent,
     TeamBuilderGridComponent,
-    TeamBuilderComponent
+    TeamBuilderComponent,
+    LoadModalComponent
   ],
   imports: [
     BrowserModule,
