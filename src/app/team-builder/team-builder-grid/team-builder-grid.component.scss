@@ -56,19 +56,21 @@ $water: #56B0FF;
 .team-member {
     margin-top: 1rem;
     border: 1px solid #CCCCCC;
-    // justify-content: space-between;
-    display: flex;
-    
+    display: grid;
+    grid-template-areas: 
+        "options"
+        "head"
+        "stats";
 }
 
 .member-header {
-    width: 20%;
-    height: 100%;
+    width: calc(100% - 2rem);
     padding: .5rem;
     margin: 1rem;
     display: flex;
     flex-direction: column;
     align-content: center;
+    grid-area: head;
 
     h2 {
         text-align: center;
@@ -78,7 +80,7 @@ $water: #56B0FF;
     img {
         height: 120px;
         width: 120px;
-        margin: auto;
+        margin: 0 auto;
     }
 
     div {
@@ -87,33 +89,29 @@ $water: #56B0FF;
         flex-direction: row;
         margin: .5rem;
 
-        p {
+        .type-icon {
+            display: inline-block;
+            color: white;
+            text-transform: uppercase;
+            font-size: 13px;
+            font-weight: 800;
+            padding: 3px;
             margin: auto;
+            border: 3px solid white;
+            border-radius: 5px;
+            box-shadow: 0px 0px 4px 3px #000000;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.71);
+            border-radius: 17px;
+            font-family: 'Josefin Sans', sans-serif;
         }
     }
-}
-
-.type-icon {
-    display: inline-block;
-    color: white;
-    text-transform: uppercase;
-    font-size: 13px;
-    font-weight: 800;
-    padding: 3px;
-    margin: 0 8px;
-    border: 3px solid white;
-    border-radius: 5px;
-    box-shadow: 0px 0px 4px 3px #000000;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.71);
-    border-radius: 17px;
-    font-family: 'Josefin Sans', sans-serif;
 }
 
 .stats {
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding-right: .5rem;
+    grid-area: stats;
 
     .stat {
         display: flex;
@@ -124,41 +122,44 @@ $water: #56B0FF;
         border: #CCCCCC solid 2px;
 
         span:first-child {
-            width: 10%;
-        }
-
-        span {
+            width: 15%;
             margin: auto 0;
         }
-    }
 
+        span:last-child {
+            margin: auto 0;
+            padding: 5px;
+            background-color: #006D9A;
+            height: 100%;
+            text-align: left;
+            color: white;
+            font-weight: bolder;
+        }
+    }
 }
 
 .pokemon-options {
-    width: 5rem;
+    width: 100%;
     background-color: #CCCCCC;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-content: space-between;
+    grid-area: options;
 
     div {
         margin: auto;
         display: flex;
-        flex-direction: column;
-    }
-
-    div button {
-        margin: 5px auto;
+        flex-direction: row;
     }
 
     div button:nth-child(3) {
-        margin: 0 auto 5px auto;
+        margin-left: 5px;
     }
 
     button {
         min-width: 35px;
         width: 35px;
-        margin: auto;
+        margin: 5px auto;
 
         hc-icon {
             color: #000000;
@@ -168,6 +169,55 @@ $water: #56B0FF;
     .giga-btn {
         hc-icon {
             color:#a082dd;
+        }
+    }
+}
+
+@media (min-width: 1100px) {
+    .team-member {
+        display: flex;
+    }
+    
+    .member-header {
+        width: 20%;
+        height: 100%;
+        padding: .5rem;
+        margin: 1rem;
+
+        img {
+            margin: auto;
+        }
+    }
+
+    .stats {
+        padding-right: .5rem;
+        margin-top: 0;
+    
+        .stat {
+            span:first-child {
+                width: 10%;
+            }
+        }
+    }
+
+    .pokemon-options {
+        flex-direction: column;
+        width: 5rem;
+
+        button {
+            margin: auto;
+        }
+
+        div {
+            flex-direction: column;
+        }
+
+        div button {
+            margin: 5px auto;
+        }
+    
+        div button:nth-child(3) {
+            margin: 0 auto 5px auto;
         }
     }
 }

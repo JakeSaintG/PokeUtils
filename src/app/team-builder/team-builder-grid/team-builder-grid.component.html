@@ -10,7 +10,7 @@
         <div class="stats" >
             <div class="stat" *ngFor = 'let stat of pokemon.baseStats | keyvalue'>
                 <span>{{stat.key | statname }}</span>
-                <span>{{stat.value | statvalue}}</span>
+                <span style="width:{{stat.value | statvalue}}%">{{stat.value}}</span>
             </div>
         </div>
         <div class="pokemon-options" >

@@ -32,7 +32,9 @@ export class TeamBuilderMenuComponent implements OnInit {
         ignoreOverlayClick: true,
         size: 'lg'
     };
+
     const subModal: HcModal<LoadModalComponent> = this.modalService.open(LoadModalComponent, options);
     subModal.result.subscribe(res => (this.result = res));
-}
+
+  }
 }
