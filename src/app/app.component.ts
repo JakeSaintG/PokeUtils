@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {HcModal, ModalOptions, ModalService} from '@healthcatalyst/cashmere';
-import { AboutModalComponent } from './main-modals/about-modal/about-modal.component';
-import { NewsModalComponent } from './main-modals/news-modal/news-modal.component';
+import { AboutModalComponent } from './modals/about-modal/about-modal.component';
+import { NewsModalComponent } from './modals/news-modal/news-modal.component';
 
 @Component({
   selector: 'pkutil-root',
