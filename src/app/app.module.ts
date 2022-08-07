@@ -14,6 +14,8 @@ import { StatNamePipe } from './team-builder/team-builder-grid/pipes/stat-name.p
 import { StatValuePipe } from './team-builder/team-builder-grid/pipes/stat-value.pipe';
 import { NewsModalComponent } from './main-modals/news-modal/news-modal.component';
 import { AboutModalComponent } from './main-modals/about-modal/about-modal.component';
+import { AbilityNamePipe } from './team-builder/team-builder-grid/pipes/ability-name.pipe';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,13 +28,15 @@ import { AboutModalComponent } from './main-modals/about-modal/about-modal.compo
     AboutModalComponent,
     GenerateCardModalComponent,
     StatNamePipe,
-    StatValuePipe
+    StatValuePipe,
+    AbilityNamePipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CashmereModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

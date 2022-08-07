@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import {
     ListModule,
     TileModule,
@@ -9,7 +10,9 @@ import {
     ButtonModule,
     AccordionModule,
     ModalModule,
-    BannerModule
+    BannerModule,
+    FormFieldModule,
+    SelectModule
 } from '@healthcatalyst/cashmere';
 
 @NgModule({
@@ -23,7 +26,12 @@ import {
     ButtonModule,
     AccordionModule,
     ModalModule,
-    BannerModule
+    BannerModule,
+    FormFieldModule,
+    SelectModule
+  ],
+  providers: [
+    FormControl
   ]
 })
 export class CashmereModule {}

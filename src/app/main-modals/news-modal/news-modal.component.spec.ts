@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ActiveModal } from '@healthcatalyst/cashmere';
 
 import { NewsModalComponent } from './news-modal.component';
 
@@ -8,7 +9,8 @@ describe('NewsModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NewsModalComponent ]
+      declarations: [ NewsModalComponent ],
+      providers: [ActiveModal],
     })
     .compileComponents();
   });

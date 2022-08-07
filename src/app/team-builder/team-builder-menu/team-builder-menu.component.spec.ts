@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ModalService } from '@healthcatalyst/cashmere';
 
 import { TeamBuilderMenuComponent } from './team-builder-menu.component';
 
@@ -8,7 +9,8 @@ describe('TeamBuilderMenuComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TeamBuilderMenuComponent ]
+      declarations: [ TeamBuilderMenuComponent ],
+      providers: [ ModalService ]
     })
     .compileComponents();
   });

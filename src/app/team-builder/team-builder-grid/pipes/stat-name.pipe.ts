@@ -6,7 +6,7 @@ export class StatNamePipe implements PipeTransform{
     transform(value: string): string {
         if (value === "hp") {
             return "HP";
-        } else if (value === "att") {
+        } else if (value === "atk") {
             return "Attack";
         } else if (value === "def") {
             return "Defense";
