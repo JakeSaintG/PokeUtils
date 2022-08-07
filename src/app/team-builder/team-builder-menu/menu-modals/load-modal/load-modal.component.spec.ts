@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ActiveModal, ModalService } from '@healthcatalyst/cashmere';
 
 import { LoadModalComponent } from './load-modal.component';
 
@@ -8,7 +9,9 @@ describe('LoadModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LoadModalComponent ]
+      providers: [ActiveModal],
+      declarations: [ LoadModalComponent ],
+      imports: []
     })
     .compileComponents();
   });

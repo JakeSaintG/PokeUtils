@@ -1,5 +1,5 @@
 <hc-tile class="team-container">
-    <div *ngFor = 'let pokemon of tempPokemon' class="team-member">
+    <div *ngFor = 'let pokemon of team' class="team-member" id="{{pokemon.guid}}">
         <hc-tile class="member-header">
             <h2>{{pokemon.name}}</h2>
             <img src="{{pokemon.img}}" alt="Image of {{pokemon.name}}">
@@ -8,13 +8,13 @@
             </div>
         </hc-tile>
         <div class="stats" >
-            <div class="stat" *ngFor = 'let stat of pokemon.baseStats | keyvalue'>
+            <div class="stat" *ngFor = 'let stat of pokemon.calcStats | keyvalue'>
                 <span>{{stat.key | statname }}</span>
                 <span style="width:{{stat.value | statvalue}}%">{{stat.value}}</span>
             </div>
         </div>
         <div class="pokemon-options" >
-            <button hc-button class="remove-btn" buttonStyle="destructive">
+            <button hc-button (click)="deleteMember(pokemon.guid)" class="remove-btn" buttonStyle="destructive">
                 <hc-icon hcMenuIcon fontSet="fa" fontIcon="fa-trash"></hc-icon>
             </button>
             <div *ngIf="pokemon.megaData.canMegaEvo">
@@ -29,5 +29,20 @@
                 <hc-icon hcMenuIcon fontSet="fa" fontIcon="fa-cloud"></hc-icon>
             </button>
         </div>
+        <hc-accordion [triggerAlign]="alignment" #accordion>
+            <hc-accordion-toolbar>Fine Tune</hc-accordion-toolbar>
+            <hc-form-field>
+                <hc-select placeholder="Ability">
+                    <option *ngFor="let ability of pokemon.abilities">{{ability | abilityname}}</option>
+                </hc-select>
+                <hc-select placeholder="Nature" [formControl]="selectControl" (change)="updateStats()">
+                    <!-- THERE'S GOT TO BE A BETTER WAYYYYY -->
+                    <option *ngFor="let nature of natures" value="{{pokemon.guid}}::{{nature.name}}::{{nature.stats.attack}}::{{nature.stats.defense}}::{{nature.stats.speed}}::{{nature.stats.spattack}}::{{nature.stats.spdefense}}">{{nature.name | titlecase}}</option>
+                </hc-select>
+                <hc-select placeholder="Form" *ngIf="pokemon.forms.length > 0">
+                    <option *ngFor="let form of pokemon.forms">{{form}}</option>
+                </hc-select>
+            </hc-form-field>
+        </hc-accordion>
     </div>
 </hc-tile> 

@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ActiveModal } from '@healthcatalyst/cashmere';
 
 import { AboutModalComponent } from './about-modal.component';
 
@@ -8,7 +9,8 @@ describe('AboutModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AboutModalComponent ]
+      declarations: [ AboutModalComponent ],
+      providers: [ActiveModal],
     })
     .compileComponents();
   });
