@@ -14,6 +14,7 @@ import { NewsModalComponent } from './modals/news-modal/news-modal.component';
 import { AboutModalComponent } from './modals/about-modal/about-modal.component';
 import { AbilityNamePipe } from './pipes/ability-name.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AddTeamMemberModalComponent } from './modals/add-team-member-modal/add-team-member-modal.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     NewsModalComponent,
     AboutModalComponent,
     GenerateCardModalComponent,
+    AddTeamMemberModalComponent,
     StatNamePipe,
     StatValuePipe,
     AbilityNamePipe

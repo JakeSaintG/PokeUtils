@@ -1,11 +1,11 @@
 <h1>Pokémon Team Builder</h1>
 
 <div class="builder-menu">
-    <button hc-button class="add-btn" buttonStyle="primary" [hcTooltip]="addTooltip">Add</button>
+    <button hc-button class="add-btn" buttonStyle="primary" [hcTooltip]="addTooltip" [disabled]="addButtonOff" (click)="addMember()">Add</button>
     <button hc-button class="save-btn" buttonStyle="secondary" [hcTooltip]="saveTooltip">Save</button>
     <button hc-button class="save-btn" buttonStyle="secondary" (click)="openLoadModal()">Load</button>
     <button hc-button class="export-btn" buttonStyle="secondary" [hcTooltip]="exportTooltip">Export</button>
-    <button hc-button class="del-btn" buttonStyle="destructive">Delete Team</button>
+    <button hc-button class="del-btn" buttonStyle="destructive" (click)="deleteTeam()">Delete Team</button>
 </div>
 
 <hc-tile class="team-container">

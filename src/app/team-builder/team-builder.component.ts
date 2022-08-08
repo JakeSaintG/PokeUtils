@@ -5,6 +5,7 @@ import { INature } from '../interfaces/INatures';
 import { ITeamMember } from '../interfaces/ITeamMember';
 import { HcModal, ModalOptions, ModalService } from '@healthcatalyst/cashmere';
 import { LoadModalComponent } from 'src/app/modals/load-modal/load-modal.component';
+import { AddTeamMemberService } from '../services/add-team-member.service';
 
 @Component({
   selector: 'pkutil-team-builder',
@@ -302,7 +303,15 @@ export class TeamBuilderComponent implements OnInit {
   triggerButton = 'Toolbar Trigger: On';
   result: unknown;
 
-  constructor(private http: HttpClient, private modalService: ModalService) { }
+  private _addButtonOff: boolean = false;
+  get addButtonOff(): boolean {
+      return this._addButtonOff;
+  };
+  set addButtonOff(value: boolean){
+      this._addButtonOff = value;
+  }
+
+  constructor(private http: HttpClient, private modalService: ModalService, private addTeamMemberService: AddTeamMemberService) { }
 
   ngOnInit(): void {
     // Get homebrew natures JSON 
@@ -312,6 +321,10 @@ export class TeamBuilderComponent implements OnInit {
 
     //To be removed when generating team obj
     this.team = this.tempPokemon;
+
+    if (this.team.length === 6) {
+      this.addButtonOff = true;
+    }
   }
 
   deleteMember = (id: string) => {
@@ -322,7 +335,26 @@ export class TeamBuilderComponent implements OnInit {
       }
       index++;
     });
-  }
+
+    if (this.team.length < 6 && this.addButtonOff == true) {
+      this.addButtonOff = !this.addButtonOff;
+    }
+  };
+
+  deleteTeam = () => {
+    this.team = [];
+    this.addButtonOff = false;
+  };
+
+  addMember = async () => {
+    let member: ITeamMember = await this.addTeamMemberService.addMember();
+    
+    this.team.push(member);
+
+    if (this.team.length === 6) {
+      this.addButtonOff = !this.addButtonOff;
+    }
+  };
 
   updateStats = () => {
     console.log(this.selectControl.value)
