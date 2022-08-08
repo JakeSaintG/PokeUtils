@@ -51,10 +51,10 @@ h1 {
 }
 
 .builder-menu {
-    margin: 0 10px;
+    margin-bottom: 1rem;
     
     button {
-        margin: 10px 10px 0 0;
+        margin: 1rem 1rem 0 0;
     }
 }
 
@@ -126,6 +126,7 @@ h1 {
         flex-direction: column;
         width: 100%;
         grid-area: stats;
+        margin-top: 1rem;
     
         .stat {
             display: flex;
@@ -205,6 +206,10 @@ h1 {
 @media (min-width: 769px) {
     .hc-accordion-trigger:focus {
         box-shadow: none !important;
+    }
+
+    .stats {
+        margin-top: 0;
     }
     
     hc-form-field {

@@ -23,6 +23,7 @@
     "@angular/router": "~13.3.11",
     "@healthcatalyst/cashmere": "^13.1.0",
     "@ng-select/ng-select": "^9.0.2",
+    "angular2-uuid": "^1.1.1",
     "font-awesome": "^4.7.0",
     "notosans-fontface": "^1.3.0",
     "rxjs": "~6.6.0",

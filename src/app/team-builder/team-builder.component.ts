@@ -6,6 +6,7 @@ import { ITeamMember } from '../interfaces/ITeamMember';
 import { HcModal, ModalOptions, ModalService } from '@healthcatalyst/cashmere';
 import { LoadModalComponent } from 'src/app/modals/load-modal/load-modal.component';
 import { AddTeamMemberService } from '../services/add-team-member.service';
+import { AddTeamMemberModalComponent } from '../modals/add-team-member-modal/add-team-member-modal.component';
 
 @Component({
   selector: 'pkutil-team-builder',
@@ -301,7 +302,8 @@ export class TeamBuilderComponent implements OnInit {
   hideToolbar = false;
   triggerToolbar = true;
   triggerButton = 'Toolbar Trigger: On';
-  result: unknown;
+  loadResult: unknown;
+  addResult: unknown;
 
   private _addButtonOff: boolean = false;
   get addButtonOff(): boolean {
@@ -311,15 +313,16 @@ export class TeamBuilderComponent implements OnInit {
       this._addButtonOff = value;
   }
 
-  constructor(private http: HttpClient, private modalService: ModalService, private addTeamMemberService: AddTeamMemberService) { }
+  constructor(
+    private http: HttpClient, 
+    private modalService: ModalService
+  ) { }
 
   ngOnInit(): void {
-    // Get homebrew natures JSON 
     this.http.get('assets/json/nature.json').subscribe((res) => {
       this.natures = res;
     });
 
-    //To be removed when generating team obj
     this.team = this.tempPokemon;
 
     if (this.team.length === 6) {
@@ -346,11 +349,8 @@ export class TeamBuilderComponent implements OnInit {
     this.addButtonOff = false;
   };
 
-  addMember = async () => {
-    let member: ITeamMember = await this.addTeamMemberService.addMember();
-    
-    this.team.push(member);
-
+  triggerAddtion = (): void => {
+    this.openAddMemberModal();
     if (this.team.length === 6) {
       this.addButtonOff = !this.addButtonOff;
     }
@@ -389,7 +389,21 @@ export class TeamBuilderComponent implements OnInit {
         size: 'lg'
     };
     const subModal: HcModal<LoadModalComponent> = this.modalService.open(LoadModalComponent, options);
-    subModal.result.subscribe(res => (this.result = res));
+    subModal.result.subscribe(res => (this.loadResult = res));
   }
 
+  async updateTeam( newMember: any ) {
+    this.team.push(newMember);
+  };
+
+  openAddMemberModal(): void { 
+    const options: ModalOptions = {
+        data:
+            'Testy Boi',
+        ignoreOverlayClick: true,
+        size: 'lg'
+    };
+    const subModal: HcModal<AddTeamMemberModalComponent> = this.modalService.open(AddTeamMemberModalComponent, options);
+    subModal.result.subscribe((e) => this.updateTeam(e));
+  }
 }
