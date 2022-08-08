@@ -11,7 +11,7 @@
     <section *ngIf="team.length === 0">
         <h2>Your team is empty!</h2>
         <p>Please start by adding a Pokémon</p>
-        <img src="../../assets/starter.png" alt="Choose your started img from Pokémon Red/Blue">
+        <img src="assets/starter.png" alt="Choose your started img from Pokémon Red/Blue">
     </section>
     <div *ngFor = 'let pokemon of team' class="team-member" id="{{pokemon.guid}}">
         <hc-tile class="member-header">
