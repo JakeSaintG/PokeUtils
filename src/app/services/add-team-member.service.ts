@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HcModal, ModalOptions, ModalService } from '@healthcatalyst/cashmere';
 import { ITeamMember } from '../interfaces/ITeamMember';
-import { AddTeamMemberModalComponent } from '../modals/add-team-member-modal/add-team-member-modal.component';
+import { UUID } from 'angular2-uuid';
 
 @Injectable({
   providedIn: 'root'
@@ -9,18 +8,16 @@ import { AddTeamMemberModalComponent } from '../modals/add-team-member-modal/add
 
 export class AddTeamMemberService {
 
-  result: unknown;
+  constructor() { }
 
-  constructor(private modalService: ModalService) { }
+  addMember = async (request: string): Promise<ITeamMember> => {
+    let guid = UUID.UUID();
 
-  addMember = async (): Promise<ITeamMember> => {
+    console.log(request);
 
-    await this.openLoadModal().then( e => {console.log("testyboi")});;
-      
-    
     return {
-      name: "Mudkip",
-      guid: "1",
+      name: `${request}`,
+      guid: `${guid}`,
       img: "https://www.serebii.net/swordshield/pokemon/258.png",
       types: [
         "water"
@@ -64,14 +61,5 @@ export class AddTeamMemberService {
     };
   };
 
-  async openLoadModal(): Promise<void> { 
-    const options: ModalOptions = {
-        data:
-            'Testy Boi',
-        ignoreOverlayClick: true,
-        size: 'lg'
-    };
-    const subModal: HcModal<AddTeamMemberModalComponent> = this.modalService.open(AddTeamMemberModalComponent, options);
-    subModal.result.subscribe(res => (this.result = res));
-  }
+
 }

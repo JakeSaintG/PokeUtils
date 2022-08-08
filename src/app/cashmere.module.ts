@@ -12,7 +12,7 @@ import {
     ModalModule,
     BannerModule,
     FormFieldModule,
-    SelectModule
+    SelectModule,
 } from '@healthcatalyst/cashmere';
 
 @NgModule({

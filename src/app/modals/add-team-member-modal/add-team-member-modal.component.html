@@ -2,13 +2,16 @@
     <hc-modal-header>About</hc-modal-header>
     <hc-banner type="warning">
         <span hcBannerStamp>WARNING</span>
-        Not Yet Functional! No matter waht you do, it will generate a Mudkip!
+        Not Yet Functional! No matter what you do, it will generate a Mudkip!
     </hc-banner>
     <hc-modal-body>
-        
-        <hc-form-field>
-            <input hcInput required />
-        </hc-form-field>
+
+        <form hcForm >
+            <!-- <hc-form-field> -->
+                <hc-label>Enter the name of the Pokemon that you want to add to your team!</hc-label>
+                <input hcInput required [formControl]="inputControl" />
+            <!-- </hc-form-field> -->
+        </form>
 
     </hc-modal-body>
     <hc-modal-footer>
