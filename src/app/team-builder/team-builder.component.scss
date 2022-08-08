@@ -60,6 +60,17 @@ h1 {
 
 .team-container {
     padding: 1rem;
+
+    section {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        
+        img {
+            width: 40%;
+            margin: auto;
+        }
+    }
 }
 
 .team-member:first-child {

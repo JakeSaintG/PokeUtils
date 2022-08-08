@@ -8,6 +8,11 @@
     <button hc-button class="del-btn" buttonStyle="destructive" (click)="deleteTeam()">Delete Team</button>
 </div>
 <hc-tile class="team-container">
+    <section *ngIf="team.length === 0">
+        <h2>Your team is empty!</h2>
+        <p>Please start by adding a Pokémon</p>
+        <img src="../../assets/starter.png" alt="Choose your started img from Pokémon Red/Blue">
+    </section>
     <div *ngFor = 'let pokemon of team' class="team-member" id="{{pokemon.guid}}">
         <hc-tile class="member-header">
             <h2>{{pokemon.name}}</h2>
