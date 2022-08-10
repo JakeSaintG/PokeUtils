@@ -351,9 +351,6 @@ export class TeamBuilderComponent implements OnInit {
 
   triggerAddtion = (): void => {
     this.openAddMemberModal();
-    if (this.team.length === 6) {
-      this.addButtonOff = !this.addButtonOff;
-    }
   };
 
   updateStats = () => {
@@ -394,6 +391,9 @@ export class TeamBuilderComponent implements OnInit {
 
   async updateTeam( newMember: any ) {
     this.team.push(newMember);
+    if (this.team.length === 6) {
+      this.addButtonOff = !this.addButtonOff;
+    }
   };
 
   openAddMemberModal(): void { 
