@@ -5,7 +5,6 @@ import { INature } from '../interfaces/INatures';
 import { ITeamMember } from '../interfaces/ITeamMember';
 import { HcModal, ModalOptions, ModalService } from '@healthcatalyst/cashmere';
 import { LoadModalComponent } from 'src/app/modals/load-modal/load-modal.component';
-import { AddTeamMemberService } from '../services/add-team-member.service';
 import { AddTeamMemberModalComponent } from '../modals/add-team-member-modal/add-team-member-modal.component';
 
 @Component({

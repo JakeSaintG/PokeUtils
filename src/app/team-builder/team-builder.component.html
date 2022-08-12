@@ -15,7 +15,7 @@
     </section>
     <div *ngFor = 'let pokemon of team' class="team-member" id="{{pokemon.guid}}">
         <hc-tile class="member-header">
-            <h2>{{pokemon.name}}</h2>
+            <h2>{{pokemon.name | diplayname | titlecase }}</h2>
             <img src="{{pokemon.img}}" alt="Image of {{pokemon.name}}">
             <div>
                 <p *ngFor = 'let type of pokemon.types' class="type-icon {{type}}">{{type}}</p>

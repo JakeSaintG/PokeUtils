@@ -16,6 +16,7 @@ import { AbilityNamePipe } from './pipes/ability-name.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddTeamMemberModalComponent } from './modals/add-team-member-modal/add-team-member-modal.component';
 import { FormFieldModule } from '@healthcatalyst/cashmere';
+import { DisplayNamePipe } from './pipes/display-name.pipe';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { FormFieldModule } from '@healthcatalyst/cashmere';
     AddTeamMemberModalComponent,
     StatNamePipe,
     StatValuePipe,
-    AbilityNamePipe
+    AbilityNamePipe,
+    DisplayNamePipe
   ],
   imports: [
     BrowserModule,
