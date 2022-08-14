@@ -6,6 +6,7 @@ import { ITeamMember } from '../interfaces/ITeamMember';
 import { HcModal, ModalOptions, ModalService } from '@healthcatalyst/cashmere';
 import { LoadModalComponent } from 'src/app/modals/load-modal/load-modal.component';
 import { AddTeamMemberModalComponent } from '../modals/add-team-member-modal/add-team-member-modal.component';
+import { AddTeamMemberService } from '../services/add-team-member.service';
 
 @Component({
   selector: 'pkutil-team-builder',
@@ -314,7 +315,8 @@ export class TeamBuilderComponent implements OnInit {
 
   constructor(
     private http: HttpClient, 
-    private modalService: ModalService
+    private modalService: ModalService,
+    private addTeamMemberService: AddTeamMemberService
   ) { }
 
   ngOnInit(): void {
@@ -326,7 +328,9 @@ export class TeamBuilderComponent implements OnInit {
 
     if (this.team.length === 6) {
       this.addButtonOff = true;
-    }
+    };
+
+    this.addTeamMemberService.getMasterList();
   }
 
   deleteMember = (id: string) => {
