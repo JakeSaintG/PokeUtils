@@ -12,7 +12,10 @@ export class AddTeamMemberModalComponent implements OnInit  {
 
   inputControl = new FormControl('');
 
-  constructor(public activeModal: ActiveModal, private addTeamMemberService: AddTeamMemberService) {}
+  constructor(
+    public activeModal: ActiveModal, 
+    private addTeamMemberService: AddTeamMemberService
+  ) {}
 
   ngOnInit(): void {
   }

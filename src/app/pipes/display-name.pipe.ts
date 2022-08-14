@@ -56,6 +56,11 @@ export class DisplayNamePipe implements PipeTransform {
             name = `sirfetch'd`;
         };
 
+        // Ensures that things like "pikachu-ash-hat" are just "pikachu"
+        if (name !== "Ho-oh") {
+            name = name.split("-")[0]; 
+        }
+
         return name;
     }
 }
