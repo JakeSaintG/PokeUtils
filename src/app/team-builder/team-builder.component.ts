@@ -6,7 +6,7 @@ import { ITeamMember } from '../interfaces/ITeamMember';
 import { HcModal, ModalOptions, ModalService } from '@healthcatalyst/cashmere';
 import { LoadModalComponent } from 'src/app/modals/load-modal/load-modal.component';
 import { AddTeamMemberModalComponent } from '../modals/add-team-member-modal/add-team-member-modal.component';
-import { AddTeamMemberService } from '../services/add-team-member.service';
+import { PokeApiService } from '../services/pokeapi.service';
 
 @Component({
   selector: 'pkutil-team-builder',
@@ -316,7 +316,7 @@ export class TeamBuilderComponent implements OnInit {
   constructor(
     private http: HttpClient, 
     private modalService: ModalService,
-    private addTeamMemberService: AddTeamMemberService
+    private pokeApiService: PokeApiService
   ) { }
 
   ngOnInit(): void {
@@ -330,7 +330,7 @@ export class TeamBuilderComponent implements OnInit {
       this.addButtonOff = true;
     };
 
-    this.addTeamMemberService.getMasterList();
+    this.pokeApiService.getMasterList();
   }
 
   deleteMember = (id: string) => {
