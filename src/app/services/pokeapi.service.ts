@@ -14,8 +14,14 @@ export class PokeApiService {
 
   constructor(private http: HttpClient) { }
 
-  addMember = async (request: string, location: string): Promise<ITeamMember> => {
+  addMember = async (userInput: string, location: string): Promise<ITeamMember> => {
     let guid = UUID.UUID();
+
+    let request: string = this.filterForPokeAPI(userInput.toLowerCase());
+
+    if (request === "missingno") {
+      return this.returnMissingNo("Unable to find a Pokemon by that name.");
+    }
 
     try {
       let masterData = await this.getMasterData(request, guid);
@@ -76,12 +82,12 @@ export class PokeApiService {
       },
       canGigantamax: false,
       baseStats: {
-        hp: 255,
-        atk: 255,
-        def: 255,
-        spAtk: 255,
-        spDef: 255,
-        spd: 255
+        hp: 10,
+        atk: 10,
+        def: 10,
+        spAtk: 10,
+        spDef: 10,
+        spd: 10
       },
       nature: {
         name: "base",
@@ -111,6 +117,25 @@ export class PokeApiService {
     });
   };
 
+  filterForPokeAPI = (userInput: string) : string => {
+    let request: string | undefined;
+    let wackyNames = [ "pidgeot", "mew"];
+
+    wackyNames.forEach(e => {
+      if ( e === userInput ) request = e;
+    });
+
+    if ( !request ) {
+      let firstMatch = this.masterList.find(e => e.name.includes(userInput));
+      console.log(firstMatch);
+      request = firstMatch?.name;
+    };
+
+    if ( !request ) request = "missingno";
+
+    return request;
+  };
+
   returnMissingNo = async (error: unknown): Promise<ITeamMember> => {
     let guid = UUID.UUID();
     console.log(`MissingNo was generated due to: ${error}`);
@@ -132,12 +157,12 @@ export class PokeApiService {
       },
       canGigantamax: false,
       baseStats: {
-        hp: 255,
-        atk: 255,
-        def: 255,
-        spAtk: 255,
-        spDef: 255,
-        spd: 255
+        hp: 0,
+        atk: 0,
+        def: 0,
+        spAtk: 0,
+        spDef: 0,
+        spd: 0
       },
       nature: {
         name: "base",

@@ -6,6 +6,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { StatNamePipe } from '../pipes/stat-name.pipe';
 import { AbilityNamePipe } from '../pipes/ability-name.pipe';
 import { StatValuePipe } from '../pipes/stat-value.pipe';
+import { DisplayNamePipe } from '../pipes/display-name.pipe';
 
 describe('TeamBuilderComponent', () => {
   let component: TeamBuilderComponent;
@@ -13,8 +14,8 @@ describe('TeamBuilderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TeamBuilderComponent , StatNamePipe, StatValuePipe, AbilityNamePipe ],
-      imports: [HttpClientTestingModule],
+      declarations: [ TeamBuilderComponent , StatNamePipe, StatValuePipe, AbilityNamePipe, DisplayNamePipe ],
+      imports: [ HttpClientTestingModule ],
       providers: [ModalService]
     })
     .compileComponents();

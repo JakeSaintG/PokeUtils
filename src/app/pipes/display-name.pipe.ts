@@ -15,16 +15,16 @@ export class DisplayNamePipe implements PipeTransform {
 
         if (name.includes("-gmax")) {
             let splitName = name.split("-"); 
-            name = `Gigantamax ${splitName[1]}`;
+            name = `Gigantamax ${splitName[0]}`;
         }
         
-        if (name === "") {
-            name = `mr-mime`;
+        if (name === "mr-mime") {
+            name = `Mr. Mime`;
         } else if (name === "nidoran-m") {
             name = `Nidoran♀`;
         } else if (name === "nidoran-f") {
             name = `Nidoran♂`;
-        } else if (name === "farfetchd") {
+        } else if (name.includes("farfetch")) {
             name = `farfetch'd`;
         } else if (name === "porygon-z") {
             name = `porygon-Z`;
@@ -32,7 +32,7 @@ export class DisplayNamePipe implements PipeTransform {
             name = `Ho-oh`;
         } else if (name === "mime-jr") {
             name = `mime jr.`;
-        } else if (name === "flabebe") {
+        } else if (name.includes("flabebe")) {
             name = `flabébé`;
         } else if (name === "type-null") {
             name = `type: null`;
@@ -54,12 +54,10 @@ export class DisplayNamePipe implements PipeTransform {
             name = `Mr. Rime`;
         } else if (name === "sirfetchd") {
             name = `sirfetch'd`;
-        };
-
-        // Ensures that things like "pikachu-ash-hat" are just "pikachu"
-        if (name !== "Ho-oh") {
+        } else {
+            // Ensures that things like "pikachu-ash-hat" are just "pikachu"
             name = name.split("-")[0]; 
-        }
+        };
 
         return name;
     }
