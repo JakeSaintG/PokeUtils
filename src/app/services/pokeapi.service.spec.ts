@@ -23,9 +23,9 @@ describe('PokeApiService', () => {
 
     it('should return the desired name for use with PokeAPI', () => {
       //Arrange
-      let namesToTest = ["mew", "pidgeot", "ivy", "nivy", "Type: Null", "Flabébé", "Nidoran♀", "farfetch'd", "fsdafjasdf"]
+      let namesToTest = ["mew", "pidgeot", "ivy", "nivy", "Type: Null", "Flabébé", "Nidoran♀", "farfetch'd", "fsdafjasdf", "mega swampert", "galarian zigzagoon", "gigantamax duraludon"]
 
-      //Act
+      //Act - taken directly from PokeAPI
       service.masterList = [
         { name: "ivysaur", url: "https://pokeapi.co/api/v2/pokemon-form/2/" },
         { name: "pidgeotto", url: "https://pokeapi.co/api/v2/pokemon-form/17/" },
@@ -38,7 +38,10 @@ describe('PokeApiService', () => {
         { name: "snivy", url: "https://pokeapi.co/api/v2/pokemon-form/495/" },
         { name: "type-null", url: "https://pokeapi.co/api/v2/pokemon-form/772/" },
         { name: "flabebe-red", url: "https://pokeapi.co/api/v2/pokemon-form/669/" },
-        { name: "flabebe-white", url: "https://pokeapi.co/api/v2/pokemon-form/670/" }
+        { name: "flabebe-white", url: "https://pokeapi.co/api/v2/pokemon-form/670/" },
+        { name: "swampert-mega", "url": "https://pokeapi.co/api/v2/pokemon-form/10166/" },
+        { name: "zigzagoon-galar", "url": "https://pokeapi.co/api/v2/pokemon-form/10333/" },
+        { name: "duraludon-gmax", "url": "https://pokeapi.co/api/v2/pokemon-form/10394/" }
       ];
 
       let SUT:string[] = [];
@@ -60,6 +63,9 @@ describe('PokeApiService', () => {
       expect(SUT[6]).toEqual("nidoran-f");
       expect(SUT[7]).toEqual("farfetchd");
       expect(SUT[8]).toEqual("missingno");
+      expect(SUT[9]).toEqual("swampert-mega");
+      expect(SUT[10]).toEqual("zigzagoon-galar");
+      expect(SUT[11]).toEqual("duraludon-gmax");
     });
   });
 });
