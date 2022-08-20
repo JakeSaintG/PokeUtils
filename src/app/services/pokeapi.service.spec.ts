@@ -23,7 +23,7 @@ describe('PokeApiService', () => {
 
     it('should return the desired name for use with PokeAPI', () => {
       //Arrange
-      let namesToTest = ["mew", "pidgeot", "ivy", "nivy", "Type: Null", "Flabébé", "Nidoran♀", "farfetch'd", "fsdafjasdf", "mega swampert", "galarian zigzagoon", "gigantamax duraludon"]
+      let namesToTest = ["mew", "pidgeot", "ivy", "nivy", "type: null", "flabébé", "nidoran♀", "farfetch'd", "fsdafjasdf", "mega swampert", "galarian zigzagoon", "gigantamax duraludon"]
 
       //Act - taken directly from PokeAPI
       service.masterList = [
