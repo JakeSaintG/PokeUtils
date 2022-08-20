@@ -9,6 +9,7 @@ import { IMasterListResult, IMasterListResults } from '../interfaces/IMasterList
 })
 
 export class PokeApiService {
+  baseUri: string = "https://pokeapi.co/api/v2/";
   masterListUri: string = "https://pokeapi.co/api/v2/pokemon-form?limit=100000";
   masterList: IMasterListResult[] = [];
 
@@ -119,10 +120,30 @@ export class PokeApiService {
 
   filterForPokeAPI = (userInput: string) : string => {
     let request: string | undefined;
-    let wackyNames = [ "pidgeot", "mew"];
+    let wackyNames = [{
+        APIName: "pidgeot",
+        possibleInputs: ["pidgeot"]
+      },
+      {
+        APIName: "mew",
+        possibleInputs: ["mew"]
+      },
+      {
+        APIName: "type-null",
+        possibleInputs: ["type-null","typenull","type null","type:null","type: null"]
+      },
+      {
+        APIName: "farfetchd",
+        possibleInputs: ["farfetchd","farfetch'd","farfetch-d","farfetch d","farfetch"]
+      },
+      {
+        APIName: "flabebe",
+        possibleInputs: ["flabébé","flabebé","flabébe","flabebe"]
+      }
+    ];
 
     wackyNames.forEach(e => {
-      if ( e === userInput ) request = e;
+      if ( e.possibleInputs.includes(userInput) ) request = e.APIName;
     });
 
     if ( !request ) {
