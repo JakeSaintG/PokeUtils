@@ -320,16 +320,9 @@ export class TeamBuilderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.http.get('assets/json/nature.json').subscribe((res) => {
-      this.natures = res;
-    });
-
+    this.http.get('assets/json/nature.json').subscribe((res) => {this.natures = res;});
     this.team = this.tempPokemon;
-
-    if (this.team.length === 6) {
-      this.addButtonOff = true;
-    };
-
+    if (this.team.length === 6) this.addButtonOff = true;
     this.pokeApiService.getMasterList();
   }
 
@@ -357,7 +350,6 @@ export class TeamBuilderComponent implements OnInit {
   };
 
   updateStats = () => {
-    console.log(this.selectControl.value)
     let value: string[] = this.selectControl.value.split("::");
     let guid = value[0];
     let nature = value[1];
@@ -394,9 +386,7 @@ export class TeamBuilderComponent implements OnInit {
 
   async updateTeam( newMember: any ) {
     this.team.push(newMember);
-    if (this.team.length === 6) {
-      this.addButtonOff = !this.addButtonOff;
-    }
+    if (this.team.length === 6) this.addButtonOff = !this.addButtonOff;
   };
 
   openAddMemberModal(): void { 
