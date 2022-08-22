@@ -17,16 +17,15 @@ export class AddTeamMemberModalComponent implements OnInit  {
     private pokeApiService: PokeApiService
   ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {};
 
   async close(): Promise<void> {
     let member = await this.pokeApiService.addMember(this.inputControl.value, "teambuilder");
     this.activeModal.close(member);
-  }
+  };
 
   cancel(): void {
       this.activeModal.dismiss();
-  }
+  };
 
 }
