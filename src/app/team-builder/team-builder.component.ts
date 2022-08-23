@@ -351,6 +351,7 @@ export class TeamBuilderComponent implements OnInit {
 
   updateStats = () => {
     let value: string[] = this.selectControl.value.split("::");
+    console.log(value)
     let guid = value[0];
     let nature = value[1];
 
@@ -369,8 +370,8 @@ export class TeamBuilderComponent implements OnInit {
           }
         });
       }
-    })
-    this.selectControl.setValue("");
+    });
+    console.log(this.team);
   }
 
   openLoadModal(): void { 

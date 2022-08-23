@@ -17,12 +17,9 @@ export class PokeApiService {
 
   addMember = async (userInput: string, location: string): Promise<ITeamMember> => {
     let guid = UUID.UUID();
-
     let request: string = this.filterForPokeAPI(userInput.toLowerCase());
 
-    if (request === "missingno") {
-      return this.returnMissingNo("Unable to find a Pokemon by that name.");
-    }
+    if (request === "missingno") return this.returnMissingNo("Unable to find a Pokemon by that name.");
 
     try {
       let masterData = await this.getMasterData(request, guid);
@@ -30,23 +27,54 @@ export class PokeApiService {
       return await this.getPokeImg(detailedData);
     } catch (error) {
       return this.returnMissingNo(error);
-    }
+    };
 
   };
 
   getMasterData = async (request: string, guid: string) : Promise<any> => {
-    const baseData: Promise<any> = new Promise((resolve) => {
-      setTimeout(() => {
-        let data = {
-          name: request,
-          guid: guid
-        }
-        
-        resolve(data);
-      }, 50);
+
+    let data = await this.http
+      .get<Promise<any>>(`https://pokeapi.co/api/v2/pokemon/${request}`)
+      .toPromise();
+
+    let types: string[] = data.types.map((e: any) => {
+      return e.type.name;
     });
 
-    return baseData;
+    let abilities: string[] = data.abilities.map((e: any) => {
+      return e.ability.name;
+    });
+
+    //TODO: NEED TO STILL GET FORMS, MEGA. GMAX, etc!
+
+    let stats =  {
+      hp: data.stats[0].base_stat,
+      atk: data.stats[0].base_stat,
+      def: data.stats[1].base_stat,
+      spAtk: data.stats[3].base_stat,
+      spDef: data.stats[4].base_stat,
+      spd: data.stats[5].base_stat,
+    };
+
+    return {
+      name: data.name,
+      guid: `${guid}`,
+      img: "assets/MissingNo.webp",
+      types: types,
+      forms: [],
+      abilities: abilities,
+      megaData: {
+        canMegaEvo: false,
+        megaForms: []
+      },
+      canGigantamax: false,
+      baseStats: stats,
+      nature: {
+        name: "base",
+        statsChange: {}
+      },
+      calcStats: Object.assign({}, stats) //To set value and avoid referencing "stats".
+    };
   };
 
   /*
@@ -54,61 +82,28 @@ export class PokeApiService {
         the team builder but getting the extra details for the PokeDex.
   */ 
 
-  getDexDetails = (data: any) : any => {
+  getDexDetails = async (data: any) : Promise<any> => {
+    // let dexDetails = await this.http
+      // .get<Promise<any>>(`https://pokeapi.co/api/v2/pokemon-species/${data.name}`)
+      // .toPromise();
+  
+    // return dexDetails;
+    
     const detailedData: Promise<any> = new Promise((resolve) => {
-      data.types = ["water"];
-      
       setTimeout(() => {
-        console.log(`Masterlist: ${this.masterList[0].name}`);
         resolve(data);
-      }, 50);
+      });
     });
     return detailedData;
   };
 
   getPokeImg = async (data: any): Promise<ITeamMember> => {
-    return {
-      name: `${data.name}`,
-      guid: `${data.guid}`,
-      img: "assets/MissingNo.webp",
-      types: data.types,
-      forms: [],
-      abilities: [
-        "duplicate",
-        "crash game"
-      ],
-      megaData: {
-        canMegaEvo: false,
-        megaForms: []
-      },
-      canGigantamax: false,
-      baseStats: {
-        hp: 10,
-        atk: 10,
-        def: 10,
-        spAtk: 10,
-        spDef: 10,
-        spd: 10
-      },
-      nature: {
-        name: "base",
-        statsChange: {
-          atk: 0,
-          def: 0,
-          spAtk: 0,
-          spDef: 0,
-          spd: 0
-        }
-      },
-      calcStats: {
-        hp: 50,
-        atk: 70,
-        def: 50,
-        spAtk: 50,
-        spDef: 50,
-        spd: 40
-      }
-    };
+    let dexDetails = await this.http
+      .get<Promise<any>>(`https://pokeapi.co/api/v2/pokemon-form/${data.name}`)
+      .toPromise();
+    
+    data.img = dexDetails.sprites.front_default;
+    return data;
   }
 
   // Could benefit from being async? Does it need to be?
@@ -142,9 +137,7 @@ export class PokeApiService {
       }
     ];
 
-    wackyNames.forEach(e => {
-      if ( e.possibleInputs.includes(userInput) ) request = e.APIName;
-    });
+    wackyNames.forEach(e => { if ( e.possibleInputs.includes(userInput) ) request = e.APIName;});
 
     if ( !request ) {
       let firstMatch = this.masterList.find(e => e.name.includes(userInput));
