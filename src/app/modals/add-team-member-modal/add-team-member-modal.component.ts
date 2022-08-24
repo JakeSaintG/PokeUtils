@@ -24,8 +24,6 @@ export class AddTeamMemberModalComponent implements OnInit  {
     this.activeModal.close(member);
   };
 
-  cancel(): void {
-      this.activeModal.dismiss();
-  };
+  cancel(): void {this.activeModal.dismiss();};
 
 }

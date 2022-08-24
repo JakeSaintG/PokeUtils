@@ -4,9 +4,7 @@ import { UUID } from 'angular2-uuid';
 import { HttpClient } from '@angular/common/http';
 import { IMasterListResult, IMasterListResults } from '../interfaces/IMasterList';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({providedIn: 'root'})
 
 export class PokeApiService {
   baseUri: string = "https://pokeapi.co/api/v2/";

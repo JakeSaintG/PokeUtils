@@ -16,8 +16,7 @@ export class AppComponent {
 
   constructor(private modalService: ModalService) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   openAboutModal(): void { 
     
