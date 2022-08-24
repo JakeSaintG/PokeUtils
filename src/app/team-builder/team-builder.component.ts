@@ -329,15 +329,11 @@ export class TeamBuilderComponent implements OnInit {
   deleteMember = (id: string) => {
     let index: number = 0;
     this.team.forEach(e => {
-      if (e.guid === id) {
-        this.team.splice(index, 1);
-      }
+      if (e.guid === id) this.team.splice(index, 1);
       index++;
     });
 
-    if (this.team.length < 6 && this.addButtonOff == true) {
-      this.addButtonOff = !this.addButtonOff;
-    }
+    if (this.team.length < 6 && this.addButtonOff == true) this.addButtonOff = !this.addButtonOff;
   };
 
   deleteTeam = () => {
@@ -345,13 +341,10 @@ export class TeamBuilderComponent implements OnInit {
     this.addButtonOff = false;
   };
 
-  triggerAddtion = (): void => {
-    this.openAddMemberModal();
-  };
+  triggerAddtion = (): void => {this.openAddMemberModal();};
 
   updateStats = () => {
     let value: string[] = this.selectControl.value.split("::");
-    console.log(value)
     let guid = value[0];
     let nature = value[1];
 
