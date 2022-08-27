@@ -5,11 +5,8 @@ export interface ITeamMember {
     types: string[]
     forms: string[]
     abilities: string[]
-    megaData: {
-        canMegaEvo: boolean
-        megaForms: string[]
-    },
-    canGigantamax: boolean
+    megaForms: string[]
+    gigantamaxForms: string[]
     baseStats: {
         hp: number
         atk: number

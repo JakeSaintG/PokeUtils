@@ -44,11 +44,8 @@ describe('TeamBuilderComponent', () => {
         "torrent",
         "damp"
       ],
-      megaData: {
-        canMegaEvo: false,
-        megaForms: []
-      },
-      canGigantamax: false,
+      megaForms: [],
+      gigantamaxForms: [],
       baseStats: {
         hp: 50,
         atk: 70,
@@ -89,11 +86,8 @@ describe('TeamBuilderComponent', () => {
         "torrent",
         "damp"
       ],
-      megaData: {
-        canMegaEvo: true,
-        megaForms: ["Mega"]
-      },
-      canGigantamax: false,
+      megaForms: ["swampert-mega"],
+      gigantamaxForms: [],
       baseStats: {
         hp: 100,
         atk: 110,
@@ -134,11 +128,8 @@ describe('TeamBuilderComponent', () => {
         "blaze",
         "solar-power"
       ],
-      megaData: {
-        canMegaEvo: true,
-        megaForms: ["Mega X", "Mega Y"]
-      },
-      canGigantamax: true,
+      megaForms: ["charizard-mega-y","charizard-mega-y"],
+      gigantamaxForms: ["charizard-gmax"],
       baseStats: {
         hp: 78,
         atk: 84,
@@ -167,7 +158,7 @@ describe('TeamBuilderComponent', () => {
       }
     },
     {
-      name: "Pikachu",
+      name: "pikachu",
       guid: "4",
       img: "https://www.serebii.net/swordshield/pokemon/025.png",
       types: [
@@ -179,11 +170,8 @@ describe('TeamBuilderComponent', () => {
         "lightning-rod",
         ""
       ],
-      megaData: {
-        canMegaEvo: false,
-        megaForms: []
-      },
-      canGigantamax: true,
+      megaForms: [],
+      gigantamaxForms: ["pikachu-gmax"],
       baseStats: {
         hp: 35,
         atk: 55,
@@ -223,11 +211,8 @@ describe('TeamBuilderComponent', () => {
       abilities: [
         "cursed-body"
       ],
-      megaData: {
-        canMegaEvo: true,
-        megaForms: ["Mega"]
-      },
-      canGigantamax: true,
+      megaForms: ["gengar-mega"],
+      gigantamaxForms: ["gengar-gmax"],
       baseStats: {
         hp: 60,
         atk: 65,
@@ -256,7 +241,7 @@ describe('TeamBuilderComponent', () => {
       }
     },
     {
-      name: "Meowth",
+      name: "meowth",
       guid: "6",
       img: "https://www.serebii.net/swordshield/pokemon/052.png",
       types: [
@@ -271,11 +256,8 @@ describe('TeamBuilderComponent', () => {
         "technician",
         "unnerve"
       ],
-      megaData: {
-        canMegaEvo: false,
-        megaForms: []
-      },
-      canGigantamax: true,
+      megaForms: [],
+      gigantamaxForms: ["meowth-gmax"],
       baseStats: {
         hp: 40,
         atk: 45,
@@ -366,7 +348,6 @@ describe('TeamBuilderComponent', () => {
 
       //Assert
       expect(component.team[2].baseStats.spd).toEqual(component.team[2].calcStats.spd); //Should not have changed
-      expect(component.selectControl.value).toEqual("");
       expect(component.team[2].nature.name).toEqual('modest');
       expect(component.team[2].calcStats.atk).not.toEqual(component.team[2].baseStats.atk);
     });
