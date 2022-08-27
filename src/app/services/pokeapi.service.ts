@@ -21,6 +21,7 @@ export class PokeApiService {
 
     try {
       let masterData = await this.getMasterData(request, guid);
+      console.log(masterData)
       let detailedData = await this.getDexDetails(masterData);
       return await this.getPokeImg(detailedData);
     } catch (error) {
@@ -30,6 +31,8 @@ export class PokeApiService {
   };
 
   getMasterData = async (request: string, guid: string) : Promise<any> => {
+    let megaForms: string[] = [];
+    let gigantamaxForms: string[] = [];
 
     let data = await this.http
       .get<Promise<any>>(`https://pokeapi.co/api/v2/pokemon/${request}`)
@@ -43,7 +46,16 @@ export class PokeApiService {
       return e.ability.name;
     });
 
-    //TODO: NEED TO STILL GET FORMS, MEGA. GMAX, etc!
+    //Maybe break the mega and gmax forms into a new array to make interating faster.
+    this.masterList.forEach(e => {
+      if (e.name.includes("gmax") && e.name.includes(request)) {gigantamaxForms.push(e.name);}
+    })
+
+    this.masterList.forEach(e => {
+      if (e.name.includes("mega") && e.name.includes(request)) {megaForms.push(e.name);}
+    })
+
+    //TODO: NEED TO STILL GET OTHER FORMS!
 
     let stats =  {
       hp: data.stats[0].base_stat,
@@ -61,11 +73,8 @@ export class PokeApiService {
       types: types,
       forms: [],
       abilities: abilities,
-      megaData: {
-        canMegaEvo: false,
-        megaForms: []
-      },
-      canGigantamax: false,
+      megaForms: megaForms,
+      gigantamaxForms: gigantamaxForms,
       baseStats: stats,
       nature: {
         name: "base",
@@ -139,7 +148,6 @@ export class PokeApiService {
 
     if ( !request ) {
       let firstMatch = this.masterList.find(e => e.name.includes(userInput));
-      console.log(firstMatch);
       request = firstMatch?.name;
     };
 
@@ -163,11 +171,8 @@ export class PokeApiService {
         "duplicate",
         "crash game"
       ],
-      megaData: {
-        canMegaEvo: false,
-        megaForms: []
-      },
-      canGigantamax: false,
+      megaForms: [],
+      gigantamaxForms: [],
       baseStats: {
         hp: 0,
         atk: 0,

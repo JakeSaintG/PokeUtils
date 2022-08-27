@@ -10,14 +10,9 @@ export class LoadModalComponent implements OnInit {
 
   constructor(public activeModal: ActiveModal) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  close(): void {
-      this.activeModal.close();
-  }
+  close(): void {this.activeModal.close();};
 
-  cancel(): void {
-      this.activeModal.dismiss();
-  }
+  cancel(): void {this.activeModal.dismiss();};
 }
