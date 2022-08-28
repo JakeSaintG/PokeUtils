@@ -19,30 +19,24 @@ export class AppComponent {
   ngOnInit(): void {}
 
   openAboutModal(): void { 
-    
     const options: ModalOptions = {
-        data:
-            'About',
+        data:'About',
         ignoreOverlayClick: true,
         size: 'lg'
     };
 
     const subModal: HcModal<AboutModalComponent> = this.modalService.open(AboutModalComponent, options);
     subModal.result.subscribe(res => (this.result = res));
-
-  }
+  };
 
   openNewsModal(): void { 
-    
     const newsOptions: ModalOptions = {
-      data:
-          'news',
+      data:'news',
       ignoreOverlayClick: true,
       size: 'lg'
     };
 
     const newsSubModal: HcModal<NewsModalComponent> = this.modalService.open(NewsModalComponent, newsOptions);
     newsSubModal.result.subscribe(res => (this.result = res));
-
-  }
+  };
 }

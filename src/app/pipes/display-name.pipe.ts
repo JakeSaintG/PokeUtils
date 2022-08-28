@@ -11,12 +11,12 @@ export class DisplayNamePipe implements PipeTransform {
             } else {
                 name = `mega ${splitName[0]}`;
             }
-        }
+        };
 
         if (name.includes("-gmax")) {
             let splitName = name.split("-"); 
             name = `Gigantamax ${splitName[0]}`;
-        }
+        };
         
         if (name === "mr-mime") {
             name = `Mr. Mime`;

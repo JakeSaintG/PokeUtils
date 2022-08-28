@@ -16,7 +16,7 @@ export class PokeApiService {
   addMember = async (userInput: string, location: string): Promise<ITeamMember> => {
     let guid = UUID.UUID();
     let request: string = this.filterForPokeAPI(userInput.toLowerCase());
-
+    
     if (request === "missingno") return this.returnMissingNo("Unable to find a Pokemon by that name.");
 
     try {
@@ -93,7 +93,6 @@ export class PokeApiService {
     // let dexDetails = await this.http
       // .get<Promise<any>>(`https://pokeapi.co/api/v2/pokemon-species/${data.name}`)
       // .toPromise();
-  
     // return dexDetails;
     
     const detailedData: Promise<any> = new Promise((resolve) => {
