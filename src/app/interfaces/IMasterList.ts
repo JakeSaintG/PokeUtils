@@ -1,11 +1,11 @@
-export interface IMasterListResults {
+export interface IListResults {
     count: number
     next: null
     previous: null
-    results: IMasterListResult[]
+    results: IListResult[]
 }
 
-export interface IMasterListResult {
+export interface IListResult {
     name: string
     url: string
 };
