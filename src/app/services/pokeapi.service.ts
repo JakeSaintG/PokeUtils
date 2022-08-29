@@ -2,14 +2,16 @@ import { Injectable } from '@angular/core';
 import { ITeamMember } from '../interfaces/ITeamMember';
 import { UUID } from 'angular2-uuid';
 import { HttpClient } from '@angular/common/http';
-import { IMasterListResult, IMasterListResults } from '../interfaces/IMasterList';
+import { IListResult, IListResults } from '../interfaces/IMasterList';
 
 @Injectable({providedIn: 'root'})
 
 export class PokeApiService {
   baseUri: string = "https://pokeapi.co/api/v2/";
   masterListUri: string = "https://pokeapi.co/api/v2/pokemon-form?limit=100000";
-  masterList: IMasterListResult[] = [];
+  masterList: IListResult[] = [];
+  megaList: IListResult[] = [];
+  gmaxList: IListResult[] = [];
 
   constructor(private http: HttpClient) { }
 
@@ -21,7 +23,6 @@ export class PokeApiService {
 
     try {
       let masterData = await this.getMasterData(request, guid);
-      console.log(masterData)
       let detailedData = await this.getDexDetails(masterData);
       return await this.getPokeImg(detailedData);
     } catch (error) {
@@ -32,6 +33,7 @@ export class PokeApiService {
 
   getMasterData = async (request: string, guid: string) : Promise<any> => {
     let megaForms: string[] = [];
+    let alternateForms: string[] = [];
     let gigantamaxForms: string[] = [];
 
     let data = await this.http
@@ -46,16 +48,21 @@ export class PokeApiService {
       return e.ability.name;
     });
 
-    //Maybe break the mega and gmax forms into a new array to make interating faster.
-    this.masterList.forEach(e => {
+    this.gmaxList.forEach(e => {
       if (e.name.includes("gmax") && e.name.includes(request)) {gigantamaxForms.push(e.name);}
     })
 
-    this.masterList.forEach(e => {
+    this.megaList.forEach(e => {
       if (e.name.includes("mega") && e.name.includes(request)) {megaForms.push(e.name);}
     })
 
-    //TODO: NEED TO STILL GET OTHER FORMS!
+    //TODO: Filter away just 
+    this.masterList.forEach(e => {
+      if (e.name.includes(request) && this.removeJunkForms(e.name) ) {
+        alternateForms.push(e.name);
+        console.log(e.name)
+      }
+    })
 
     let stats =  {
       hp: data.stats[0].base_stat,
@@ -71,7 +78,7 @@ export class PokeApiService {
       guid: `${guid}`,
       img: "assets/MissingNo.webp",
       types: types,
-      forms: [],
+      forms: alternateForms,
       abilities: abilities,
       megaForms: megaForms,
       gigantamaxForms: gigantamaxForms,
@@ -103,6 +110,11 @@ export class PokeApiService {
     return detailedData;
   };
 
+  removeJunkForms = (nameToCheck: string) => {
+    let junkForms: string[] = ["-totem", "-cap", "-star"];
+    return junkForms.some(e => nameToCheck.includes(e)) ? false : true;
+  };
+
   getPokeImg = async (data: any): Promise<ITeamMember> => {
     let dexDetails = await this.http
       .get<Promise<any>>(`https://pokeapi.co/api/v2/pokemon-form/${data.name}`)
@@ -113,10 +125,20 @@ export class PokeApiService {
   }
 
   // Could benefit from being async? Does it need to be?
-  getMasterList = () => {
-    this.http.get<IMasterListResults>(this.masterListUri).subscribe((res) => {
+  preparePokeLists = () => {
+    this.http.get<IListResults>(this.masterListUri).subscribe((res) => {
       this.masterList = res.results;
+
+      this.masterList.forEach(e => {
+        if (e.name.includes("-mega")) this.megaList.push(e);
+        if (e.name.includes("-gmax")) this.gmaxList.push(e);
+      })
+
+      // this.masterList.forEach((e, i, arr) => {
+      //   if (e.name.includes("-mega") || e.name.includes("-gmax")) arr.splice(i, 1);
+      // });
     });
+
   };
 
   filterForPokeAPI = (userInput: string) : string => {

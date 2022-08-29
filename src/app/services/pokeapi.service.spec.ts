@@ -46,12 +46,9 @@ describe('PokeApiService', () => {
 
       let SUT:string[] = [];
       namesToTest.forEach(e => {
-        let test = service.filterForPokeAPI(e)
-        console.log(test)
+        let test = service.filterForPokeAPI(e);
         SUT.push(test);
       });
-
-      console.log(SUT)
       
       //Assert
       expect(SUT[0]).toEqual("mew");

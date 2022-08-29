@@ -48,7 +48,7 @@ export class TeamBuilderComponent implements OnInit {
   ngOnInit(): void {
     this.http.get('assets/json/nature.json').subscribe((res) => {this.natures = res;});
     if (this.team.length === 6) this.addButtonOff = true;
-    this.pokeApiService.getMasterList();
+    this.pokeApiService.preparePokeLists();
   }
 
   deleteMember = (id: string) => {
