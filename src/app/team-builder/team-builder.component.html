@@ -47,14 +47,14 @@
             <hc-accordion-toolbar>Fine Tune</hc-accordion-toolbar>
             <hc-form-field>
                 <hc-select placeholder="Ability">
-                    <option *ngFor="let ability of pokemon.abilities">{{ability | abilityname | titlecase}}</option>
+                    <option *ngFor="let ability of pokemon.abilities">{{ability | removedash | titlecase}}</option>
                 </hc-select>
-                <hc-select placeholder="Nature" [formControl]="selectControl" (change)="updateStats()">
+                <hc-select placeholder="Nature" [formControl]="natureControl" (change)="updateStats()">
                     <!-- THERE'S GOT TO BE A BETTER WAYYYYY -->
                     <option *ngFor="let nature of natures" value="{{pokemon.guid}}::{{nature.name}}::{{nature.stats.attack}}::{{nature.stats.defense}}::{{nature.stats.speed}}::{{nature.stats.spattack}}::{{nature.stats.spdefense}}">{{nature.name | titlecase}}</option>
                 </hc-select>
-                <hc-select placeholder="Form" *ngIf="pokemon.forms.length > 0">
-                    <option *ngFor="let form of pokemon.forms">{{form}}</option>
+                <hc-select placeholder="Form" *ngIf="pokemon.forms.length > 1" [formControl]="specialFormsControl" (change)="updateMember()">
+                    <option *ngFor="let form of pokemon.forms" value="{{form}}">{{form | removedash | titlecase}}</option>
                 </hc-select>
             </hc-form-field>
         </hc-accordion>

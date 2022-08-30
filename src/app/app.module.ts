@@ -12,7 +12,7 @@ import { StatNamePipe } from './pipes/stat-name.pipe';
 import { StatValuePipe } from './pipes/stat-value.pipe';
 import { NewsModalComponent } from './modals/news-modal/news-modal.component';
 import { AboutModalComponent } from './modals/about-modal/about-modal.component';
-import { AbilityNamePipe } from './pipes/ability-name.pipe';
+import { RemoveDashPipe } from './pipes/ability-name.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddTeamMemberModalComponent } from './modals/add-team-member-modal/add-team-member-modal.component';
 import { FormFieldModule } from '@healthcatalyst/cashmere';
@@ -29,7 +29,7 @@ import { DisplayNamePipe } from './pipes/display-name.pipe';
     AddTeamMemberModalComponent,
     StatNamePipe,
     StatValuePipe,
-    AbilityNamePipe,
+    RemoveDashPipe,
     DisplayNamePipe
   ],
   imports: [

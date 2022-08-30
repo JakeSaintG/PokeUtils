@@ -4,7 +4,7 @@ import { ModalService } from '@healthcatalyst/cashmere';
 import { ITeamMember } from '../interfaces/ITeamMember';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { StatNamePipe } from '../pipes/stat-name.pipe';
-import { AbilityNamePipe } from '../pipes/ability-name.pipe';
+import { RemoveDashPipe } from '../pipes/ability-name.pipe';
 import { StatValuePipe } from '../pipes/stat-value.pipe';
 import { DisplayNamePipe } from '../pipes/display-name.pipe';
 
@@ -14,7 +14,7 @@ describe('TeamBuilderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TeamBuilderComponent , StatNamePipe, StatValuePipe, AbilityNamePipe, DisplayNamePipe ],
+      declarations: [ TeamBuilderComponent , StatNamePipe, StatValuePipe, RemoveDashPipe, DisplayNamePipe ],
       imports: [ HttpClientTestingModule ],
       providers: [ModalService]
     })
@@ -311,7 +311,7 @@ describe('TeamBuilderComponent', () => {
     it('should update a PKMN calculated stats when a nature is chosen', () => {
       //Arrange
       component.team = testTeam;
-      component.selectControl.setValue('3::modest::-0.1::0::0::0.1::0');
+      component.natureControl.setValue('3::modest::-0.1::0::0::0.1::0');
       component.natures = [{
         "name": "naive",
         "stats": {

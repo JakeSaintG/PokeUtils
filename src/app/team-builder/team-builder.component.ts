@@ -21,7 +21,8 @@ export class TeamBuilderComponent implements OnInit {
   dynaTooltip:string = "Dynamax!";
   gigaTooltip:string = "Gigantamax!";
   alignment = 'left';
-  selectControl = new FormControl('');
+  natureControl = new FormControl('');
+  specialFormsControl = new FormControl('');
   addTooltip = "Add a Pokémon to your team.";
   saveTooltip = "Not yet implemented!";
   exportTooltip = "Not yet implemented!";
@@ -68,8 +69,20 @@ export class TeamBuilderComponent implements OnInit {
 
   triggerAddtion = (): void => {this.openAddMemberModal();};
 
+  updateMember = () => {
+    let value: string[] = this.specialFormsControl.value;
+    // this.pokeApiService.addMember
+    //TODO:
+      //Refactor addMember to allow a guid to be passed in
+      //In this function, if a returned guid matches an existing guid in the team, then replace that team member
+        // swampert ===replaced with===> swampert-mega
+      //Make the mega and gmax button use this function
+        //Do not allow megas and gmax from appearing in the form list...
+    console.log(value)
+  };
+
   updateStats = () => {
-    let value: string[] = this.selectControl.value.split("::");
+    let value: string[] = this.natureControl.value.split("::");
     let guid = value[0];
     let nature = value[1];
 
