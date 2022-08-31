@@ -32,16 +32,18 @@
                 <hc-icon hcMenuIcon fontSet="fa" fontIcon="fa-trash"></hc-icon>
             </button>
             <div *ngIf="pokemon.megaForms.length > 0">
-                <button hc-button class="mega-btn" buttonStyle="primary-alt" [hcTooltip]="megaForm" *ngFor="let megaForm of pokemon.megaForms" name="peas">
+                <button hc-button class="mega-btn" buttonStyle="primary-alt" [hcTooltip]="megaForm" *ngFor="let megaForm of pokemon.megaForms" (click)="updateMember(pokemon.guid, megaForm)">
                     <img src="assets/mega-evo.webp" height="30px" alt="Mega Evolution Icon">
                 </button>
             </div>
             <button hc-button class="dyna-btn" buttonStyle="secondary" buttonStyle="pink" [hcTooltip]="dynaTooltip">
                 <img src="assets/dynamax.webp" height="30px" alt="Dynamax Icon">
             </button>
-            <button hc-button class="giga-btn" buttonStyle="secondary" buttonStyle="pink" [hcTooltip]="gigaTooltip" *ngIf="pokemon.gigantamaxForms.length > 0">
-                <hc-icon hcMenuIcon fontSet="fa" fontIcon="fa-cloud"></hc-icon>
-            </button>
+            <div *ngIf="pokemon.gigantamaxForms.length > 0">
+                <button hc-button class="giga-btn" buttonStyle="pink" [hcTooltip]="gigaTooltip" *ngFor="let gmaxForm of pokemon.gigantamaxForms" (click)="updateMember(pokemon.guid, gmaxForm)">
+                    <hc-icon hcMenuIcon fontSet="fa" fontIcon="fa-cloud"></hc-icon>
+                </button>
+            </div>
         </div>
         <hc-accordion [triggerAlign]="alignment" #accordion>
             <hc-accordion-toolbar>Fine Tune</hc-accordion-toolbar>
@@ -53,7 +55,7 @@
                     <!-- THERE'S GOT TO BE A BETTER WAYYYYY -->
                     <option *ngFor="let nature of natures" value="{{pokemon.guid}}::{{nature.name}}::{{nature.stats.attack}}::{{nature.stats.defense}}::{{nature.stats.speed}}::{{nature.stats.spattack}}::{{nature.stats.spdefense}}">{{nature.name | titlecase}}</option>
                 </hc-select>
-                <hc-select placeholder="Form" *ngIf="pokemon.forms.length > 1" [formControl]="specialFormsControl" (change)="updateMember()">
+                <hc-select placeholder="Form" *ngIf="pokemon.forms.length > 1" [formControl]="specialFormsControl" (change)="updateMember('00', 'useFormControl')">
                     <option *ngFor="let form of pokemon.forms" value="{{pokemon.guid}}::{{form}}">{{form | removedash | titlecase}}</option>
                 </hc-select>
             </hc-form-field>

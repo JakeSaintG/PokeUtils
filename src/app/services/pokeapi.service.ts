@@ -59,7 +59,6 @@ export class PokeApiService {
     this.masterList.forEach(e => {
       if (e.name.includes(request) && this.removeJunkForms(e.name) ) {
         alternateForms.push(e.name);
-        console.log(e.name)
       }
     })
 
@@ -112,7 +111,7 @@ export class PokeApiService {
   };
 
   removeJunkForms = (nameToCheck: string) => {
-    let junkForms: string[] = ["-totem", "-cap", "-star"];
+    let junkForms: string[] = ["-totem", "-cap", "-star", "-spiky"];
     return junkForms.some(e => nameToCheck.includes(e)) ? false : true;
   };
 
@@ -167,11 +166,9 @@ export class PokeApiService {
 
     wackyNames.forEach(e => { if ( e.possibleInputs.includes(userInput) ) request = e.APIName;});
 
-    if ( !request ) {
-      let firstMatch = this.masterList.find(e => e.name.includes(userInput));
-      request = firstMatch?.name;
-    };
-
+    if ( !request ) request = (this.masterList.find(e => e.name.includes(userInput))?.name);
+    if ( !request ) request = (this.megaList.find(e => e.name.includes(userInput))?.name);
+    if ( !request ) request = (this.gmaxList.find(e => e.name.includes(userInput))?.name);
     if ( !request ) request = "missingno";
 
     return request;
