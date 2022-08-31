@@ -15,8 +15,9 @@ export class PokeApiService {
 
   constructor(private http: HttpClient) { }
 
-  addMember = async (userInput: string, location: string): Promise<ITeamMember> => {
-    let guid = UUID.UUID();
+  addMember = async (userInput: string, location: string, guid: string): Promise<ITeamMember> => {
+    if (guid == "")  guid = UUID.UUID();
+
     let request: string = this.filterForPokeAPI(userInput.toLowerCase());
     
     if (request === "missingno") return this.returnMissingNo("Unable to find a Pokemon by that name.");
@@ -28,7 +29,6 @@ export class PokeApiService {
     } catch (error) {
       return this.returnMissingNo(error);
     };
-
   };
 
   getMasterData = async (request: string, guid: string) : Promise<any> => {
@@ -56,7 +56,6 @@ export class PokeApiService {
       if (e.name.includes("mega") && e.name.includes(request)) {megaForms.push(e.name);}
     })
 
-    //TODO: Filter away just 
     this.masterList.forEach(e => {
       if (e.name.includes(request) && this.removeJunkForms(e.name) ) {
         alternateForms.push(e.name);
@@ -98,10 +97,12 @@ export class PokeApiService {
 
   getDexDetails = async (data: any) : Promise<any> => {
     // let dexDetails = await this.http
-      // .get<Promise<any>>(`https://pokeapi.co/api/v2/pokemon-species/${data.name}`)
+      // .get<Promise<any>>(`https://pokeapi.co/api/v2/pokemon-species/${data.id}`)
       // .toPromise();
     // return dexDetails;
     
+    //TODO: USE VARITIES ON THE pokemon-species AND THEIR DEX NO. TO RETURN A BETTER LIST OF FORMS!!!
+      //Need to get dex no. from previous call and pass it in here....
     const detailedData: Promise<any> = new Promise((resolve) => {
       setTimeout(() => {
         resolve(data);
@@ -134,11 +135,10 @@ export class PokeApiService {
         if (e.name.includes("-gmax")) this.gmaxList.push(e);
       })
 
-      // this.masterList.forEach((e, i, arr) => {
-      //   if (e.name.includes("-mega") || e.name.includes("-gmax")) arr.splice(i, 1);
-      // });
+      this.masterList.forEach((e, i, arr) => {
+        if (e.name.includes("-mega") || e.name.includes("-gmax")) arr.splice(i, 1);
+      });
     });
-
   };
 
   filterForPokeAPI = (userInput: string) : string => {

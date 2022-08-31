@@ -54,7 +54,7 @@
                     <option *ngFor="let nature of natures" value="{{pokemon.guid}}::{{nature.name}}::{{nature.stats.attack}}::{{nature.stats.defense}}::{{nature.stats.speed}}::{{nature.stats.spattack}}::{{nature.stats.spdefense}}">{{nature.name | titlecase}}</option>
                 </hc-select>
                 <hc-select placeholder="Form" *ngIf="pokemon.forms.length > 1" [formControl]="specialFormsControl" (change)="updateMember()">
-                    <option *ngFor="let form of pokemon.forms" value="{{form}}">{{form | removedash | titlecase}}</option>
+                    <option *ngFor="let form of pokemon.forms" value="{{pokemon.guid}}::{{form}}">{{form | removedash | titlecase}}</option>
                 </hc-select>
             </hc-form-field>
         </hc-accordion>
