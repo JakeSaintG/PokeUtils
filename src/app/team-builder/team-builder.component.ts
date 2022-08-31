@@ -69,8 +69,14 @@ export class TeamBuilderComponent implements OnInit {
 
   triggerAddtion = (): void => {this.openAddMemberModal();};
 
-  updateMember = async () => {
-    const value: string[] = this.specialFormsControl.value.split("::");
+  updateMember = async (guid: string, form: string) => {
+    let value: string[] = [];
+    if (form == "useFormControl") {
+      value = this.specialFormsControl.value.split("::");
+    } else {
+      value = [guid, form];
+    }
+    
     const updatedMember: ITeamMember = await this.pokeApiService.addMember(value[1], "updateMember", value[0]);
     let savedForms: string[] = [];
     
