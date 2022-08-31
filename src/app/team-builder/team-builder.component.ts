@@ -69,16 +69,18 @@ export class TeamBuilderComponent implements OnInit {
 
   triggerAddtion = (): void => {this.openAddMemberModal();};
 
-  updateMember = () => {
-    let value: string[] = this.specialFormsControl.value;
-    // this.pokeApiService.addMember
+  updateMember = async () => {
+    const value: string[] = this.specialFormsControl.value.split("::");
+    const updatedMember: ITeamMember = await this.pokeApiService.addMember(value[1], "updateMember", value[0]);
+    let savedForms: string[] = [];
+    
+    const i = this.team.map(e => e.guid).indexOf(updatedMember.guid);
+
+    this.team.splice( i, 1, updatedMember);
     //TODO:
-      //Refactor addMember to allow a guid to be passed in
-      //In this function, if a returned guid matches an existing guid in the team, then replace that team member
-        // swampert ===replaced with===> swampert-mega
       //Make the mega and gmax button use this function
         //Do not allow megas and gmax from appearing in the form list...
-    console.log(value)
+      //The forms changer for things like raticate-alola is broken...I need to retain the forms array.
   };
 
   updateStats = () => {
