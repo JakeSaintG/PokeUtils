@@ -16,7 +16,6 @@ import { PokeApiService } from '../services/pokeapi.service';
 export class TeamBuilderComponent implements OnInit {
 
   public team: ITeamMember[] = [];
-
   natures: any;
   dynaTooltip:string = "Dynamax!";
   gigaTooltip:string = "Gigantamax!";
@@ -24,9 +23,9 @@ export class TeamBuilderComponent implements OnInit {
   natureControl = new FormControl('');
   specialFormsControl = new FormControl('');
   addTooltip = "Add a Pokémon to your team.";
-  saveTooltip = "Not yet implemented!";
-  exportTooltip = "Not yet implemented!";
-  hideToolbar = false;
+  saveTooltip: string = "Not yet implemented!";
+  exportTooltip: string = "Not yet implemented!";
+  hideToolbar: boolean = false;
   triggerToolbar = true;
   triggerButton = 'Toolbar Trigger: On';
   loadResult: unknown;
@@ -53,10 +52,10 @@ export class TeamBuilderComponent implements OnInit {
   }
 
   deleteMember = (id: string) => {
-    let index: number = 0;
+    let i: number = 0;
     this.team.forEach(e => {
-      if (e.guid === id) this.team.splice(index, 1);
-      index++;
+      if (e.guid === id) this.team.splice(i, 1);
+      i++;
     });
 
     if (this.team.length < 6 && this.addButtonOff == true) this.addButtonOff = !this.addButtonOff;
@@ -71,28 +70,28 @@ export class TeamBuilderComponent implements OnInit {
 
   updateMember = async (guid: string, form: string) => {
     let value: string[] = [];
-    if (form == "useFormControl") {
-      value = this.specialFormsControl.value.split("::");
-    } else {
-      value = [guid, form];
-    }
+
+    form == "useFormControl" ? value = this.specialFormsControl.value.split("::") : value = [guid, form]
     
     const updatedMember: ITeamMember = await this.pokeApiService.addMember(value[1], "updateMember", value[0]);
-    let savedForms: string[] = [];
-    
-    const i = this.team.map(e => e.guid).indexOf(updatedMember.guid);
+
+    const i = this.team.map(e => {
+      if (e.guid == updatedMember.guid) {
+        updatedMember.forms = e.forms;
+        return e.guid
+      } 
+      return;
+    }).indexOf(updatedMember.guid)
 
     this.team.splice( i, 1, updatedMember);
     //TODO:
-      //Make the mega and gmax button use this function
-        //Do not allow megas and gmax from appearing in the form list...
-      //The forms changer for things like raticate-alola is broken...I need to retain the forms array.
+      //Do not allow megas and gmax appear in the form list...
   };
 
   updateStats = () => {
-    let value: string[] = this.natureControl.value.split("::");
-    let guid = value[0];
-    let nature = value[1];
+    const value: string[] = this.natureControl.value.split("::");
+    const guid = value[0];
+    const nature = value[1];
 
     this.team.forEach(pokemon => {
       if (pokemon.guid === guid) {
