@@ -49,18 +49,18 @@ export class PokeApiService {
     });
 
     this.gmaxList.forEach(e => {
-      if (e.name.includes("gmax") && e.name.includes(request)) {gigantamaxForms.push(e.name);}
+      if (e.name.includes("gmax") && e.name.includes(request)) gigantamaxForms.push(e.name);
     })
 
     this.megaList.forEach(e => {
-      if (e.name.includes("mega") && e.name.includes(request)) {megaForms.push(e.name);}
+      if (e.name.includes("mega") && e.name.includes(request)) megaForms.push(e.name);
     })
 
     this.masterList.forEach(e => {
-      if (e.name.includes(request) && this.removeJunkForms(e.name) ) {
-        alternateForms.push(e.name);
-      }
+      if (e.name.includes(request) && this.removeJunkForms(e.name) ) alternateForms.push(e.name);
     })
+
+    let isAdvancedForm: boolean = data.name.includes("-mega") || data.name.includes("-gmax") ?  true : false;
 
     let stats =  {
       hp: data.stats[0].base_stat,
@@ -78,6 +78,7 @@ export class PokeApiService {
       types: types,
       forms: alternateForms,
       abilities: abilities,
+      isAdvancedForm: isAdvancedForm,
       megaForms: megaForms,
       gigantamaxForms: gigantamaxForms,
       baseStats: stats,
@@ -100,8 +101,11 @@ export class PokeApiService {
       // .toPromise();
     // return dexDetails;
     
-    //TODO: USE VARITIES ON THE pokemon-species AND THEIR DEX NO. TO RETURN A BETTER LIST OF FORMS!!!
-      //Need to get dex no. from previous call and pass it in here....
+    //TODO: 
+      // USE VARITIES ON THE pokemon-species AND THEIR DEX NO. TO RETURN A BETTER LIST OF FORMS!!!
+        // Need to get dex no. from previous call and pass it in here....
+      // Forms like unown and flabebe are broken...
+        // Giratina just doesn't work?
     const detailedData: Promise<any> = new Promise((resolve) => {
       setTimeout(() => {
         resolve(data);
@@ -189,6 +193,7 @@ export class PokeApiService {
         "duplicate",
         "crash game"
       ],
+      isAdvancedForm: false,
       megaForms: [],
       gigantamaxForms: [],
       baseStats: {

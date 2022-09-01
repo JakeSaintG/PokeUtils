@@ -5,6 +5,7 @@ export interface ITeamMember {
     types: string[]
     forms: string[]
     abilities: string[]
+    isAdvancedForm: boolean
     megaForms: string[]
     gigantamaxForms: string[]
     baseStats: {
