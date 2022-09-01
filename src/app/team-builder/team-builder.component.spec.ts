@@ -291,12 +291,12 @@ describe('TeamBuilderComponent', () => {
 
     it('should delete a Pokemon object', () => {
       //Arrange
-      component.team = testTeam;
+      component.team.teamList = testTeam;
 
       //Act
       component.deleteMember("4");
       let guids: string[] = [];
-      component.team.forEach(element => {
+      component.team.teamList.forEach(element => {
         guids.push(element.guid);
       });
       
@@ -310,7 +310,7 @@ describe('TeamBuilderComponent', () => {
   describe('updateStats', () => {
     it('should update a PKMN calculated stats when a nature is chosen', () => {
       //Arrange
-      component.team = testTeam;
+      component.team.teamList = testTeam;
       component.natureControl.setValue('3::modest::-0.1::0::0::0.1::0');
       component.natures = [{
         "name": "naive",
@@ -347,9 +347,9 @@ describe('TeamBuilderComponent', () => {
       component.updateStats();
 
       //Assert
-      expect(component.team[2].baseStats.spd).toEqual(component.team[2].calcStats.spd); //Should not have changed
-      expect(component.team[2].nature.name).toEqual('modest');
-      expect(component.team[2].calcStats.atk).not.toEqual(component.team[2].baseStats.atk);
+      expect(component.team.teamList[2].baseStats.spd).toEqual(component.team.teamList[2].calcStats.spd); //Should not have changed
+      expect(component.team.teamList[2].nature.name).toEqual('modest');
+      expect(component.team.teamList[2].calcStats.atk).not.toEqual(component.team.teamList[2].baseStats.atk);
     });
   });
 });

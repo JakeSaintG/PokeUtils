@@ -5,15 +5,15 @@
     <button hc-button class="save-btn" buttonStyle="secondary" [hcTooltip]="saveTooltip">Save</button>
     <button hc-button class="save-btn" buttonStyle="secondary" (click)="openLoadModal()">Load</button>
     <button hc-button class="export-btn" buttonStyle="secondary" [hcTooltip]="exportTooltip">Export</button>
-    <button hc-button class="del-btn" buttonStyle="destructive" (click)="deleteTeam()">Delete Team</button>
+    <button hc-button class="del-btn" buttonStyle="destructive" (click)="deleteTeam()" [disabled]="deleteButtonOff">Delete Team</button>
 </div>
 <hc-tile class="team-container">
-    <section *ngIf="team.length === 0">
+    <section *ngIf="team.teamList.length === 0">
         <h2>Your team is empty!</h2>
         <p>Please start by adding a Pokémon</p>
         <img src="assets/starter.png" alt="Choose your started img from Pokémon Red/Blue">
     </section>
-    <div *ngFor = 'let pokemon of team' class="team-member" id="{{pokemon.guid}}">
+    <div *ngFor = 'let pokemon of team.teamList' class="team-member" id="{{pokemon.guid}}">
         <hc-tile class="member-header">
             <h2>{{pokemon.name | diplayname | titlecase }}</h2>
             <img src="{{pokemon.img}}" alt="Image of {{pokemon.name}}">
@@ -31,15 +31,15 @@
             <button hc-button (click)="deleteMember(pokemon.guid)" class="remove-btn" buttonStyle="destructive">
                 <hc-icon hcMenuIcon fontSet="fa" fontIcon="fa-trash"></hc-icon>
             </button>
-            <div *ngIf="pokemon.megaForms.length > 0">
+            <div *ngIf="pokemon.megaForms.length > 0 && this.team.hasAdvancedFrom === false">
                 <button hc-button class="mega-btn" buttonStyle="primary-alt" [hcTooltip]="megaForm" *ngFor="let megaForm of pokemon.megaForms" (click)="updateMember(pokemon.guid, megaForm)">
                     <img src="assets/mega-evo.webp" height="30px" alt="Mega Evolution Icon">
                 </button>
             </div>
-            <button hc-button class="dyna-btn" buttonStyle="secondary" buttonStyle="pink" [hcTooltip]="dynaTooltip">
+            <button hc-button class="dyna-btn" buttonStyle="secondary" buttonStyle="pink" [hcTooltip]="dynaTooltip" *ngIf="this.team.hasAdvancedFrom === false">
                 <img src="assets/dynamax.webp" height="30px" alt="Dynamax Icon">
             </button>
-            <div *ngIf="pokemon.gigantamaxForms.length > 0">
+            <div *ngIf="pokemon.gigantamaxForms.length > 0 && this.team.hasAdvancedFrom === false">
                 <button hc-button class="giga-btn" buttonStyle="pink" [hcTooltip]="gigaTooltip" *ngFor="let gmaxForm of pokemon.gigantamaxForms" (click)="updateMember(pokemon.guid, gmaxForm)">
                     <hc-icon hcMenuIcon fontSet="fa" fontIcon="fa-cloud"></hc-icon>
                 </button>

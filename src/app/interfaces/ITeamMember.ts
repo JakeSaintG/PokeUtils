@@ -34,3 +34,8 @@ export interface ITeamMember {
       spd: number
   }
 }
+
+export interface ITeam {
+  hasAdvancedFrom: boolean,
+  teamList: ITeamMember[]
+}
