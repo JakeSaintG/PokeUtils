@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { INature } from '../interfaces/INatures';
-import { ITeamMember } from '../interfaces/ITeamMember';
+import { ITeam, ITeamMember } from '../interfaces/ITeamMember';
 import { HcModal, ModalOptions, ModalService } from '@healthcatalyst/cashmere';
 import { LoadModalComponent } from 'src/app/modals/load-modal/load-modal.component';
 import { AddTeamMemberModalComponent } from '../modals/add-team-member-modal/add-team-member-modal.component';
@@ -15,7 +15,11 @@ import { PokeApiService } from '../services/pokeapi.service';
 })
 export class TeamBuilderComponent implements OnInit {
 
-  public team: ITeamMember[] = [];
+  public team: ITeam = {
+    hasAdvancedFrom: false,
+    teamList: []
+  };
+
   natures: any;
   dynaTooltip:string = "Dynamax!";
   gigaTooltip:string = "Gigantamax!";
@@ -39,6 +43,14 @@ export class TeamBuilderComponent implements OnInit {
       this._addButtonOff = value;
   }
 
+  private _deleteButtonOff: boolean = false;
+  get deleteButtonOff(): boolean {
+      return this._deleteButtonOff;
+  };
+  set deleteButtonOff(value: boolean){
+      this._deleteButtonOff = value;
+  }
+
   constructor(
     private http: HttpClient, 
     private modalService: ModalService,
@@ -47,23 +59,26 @@ export class TeamBuilderComponent implements OnInit {
 
   ngOnInit(): void {
     this.http.get('assets/json/nature.json').subscribe((res) => {this.natures = res;});
-    if (this.team.length === 6) this.addButtonOff = true;
+    if (this.team.teamList.length === 6) this.addButtonOff = true;
+    if (this.team.teamList.length === 0) this.deleteButtonOff = true;
     this.pokeApiService.preparePokeLists();
   }
 
   deleteMember = (id: string) => {
     let i: number = 0;
-    this.team.forEach(e => {
-      if (e.guid === id) this.team.splice(i, 1);
+    this.team.teamList.forEach(e => {
+      if (e.guid === id) this.team.teamList.splice(i, 1);
       i++;
     });
 
-    if (this.team.length < 6 && this.addButtonOff == true) this.addButtonOff = !this.addButtonOff;
+    if (this.team.teamList.length < 6 && this.addButtonOff == true) this.addButtonOff = !this.addButtonOff;
+    if (this.team.teamList.length === 0 && this.deleteButtonOff == false) this.deleteButtonOff = !this.deleteButtonOff;
   };
 
   deleteTeam = () => {
-    this.team = [];
+    this.team.teamList = [];
     this.addButtonOff = false;
+    this.deleteButtonOff = true;
   };
 
   triggerAddtion = (): void => {this.openAddMemberModal();};
@@ -75,15 +90,15 @@ export class TeamBuilderComponent implements OnInit {
     
     const updatedMember: ITeamMember = await this.pokeApiService.addMember(value[1], "updateMember", value[0]);
 
-    const i = this.team.map(e => {
+    const i = this.team.teamList.map(e => {
       if (e.guid == updatedMember.guid) {
         updatedMember.forms = e.forms;
         return e.guid
       } 
       return;
     }).indexOf(updatedMember.guid)
-
-    this.team.splice( i, 1, updatedMember);
+    if (updatedMember.name.includes("-mega") || updatedMember.name.includes("-gmax")) this.team.hasAdvancedFrom = true;
+    this.team.teamList.splice( i, 1, updatedMember);
     //TODO:
       //Do not allow megas and gmax appear in the form list...
   };
@@ -93,7 +108,7 @@ export class TeamBuilderComponent implements OnInit {
     const guid = value[0];
     const nature = value[1];
 
-    this.team.forEach(pokemon => {
+    this.team.teamList.forEach(pokemon => {
       if (pokemon.guid === guid) {
         pokemon.calcStats.atk = Math.floor((pokemon.baseStats.atk * parseFloat(value[2])) + pokemon.baseStats.atk);
         pokemon.calcStats.def = Math.floor((pokemon.baseStats.def * parseFloat(value[3])) + pokemon.baseStats.def);
@@ -111,6 +126,12 @@ export class TeamBuilderComponent implements OnInit {
     });
   }
 
+  async updateTeam( newMember: ITeamMember | any ) {
+    this.team.teamList.push(newMember);
+    if (this.team.teamList.length === 6) this.addButtonOff = !this.addButtonOff;
+    if (this.team.teamList.length > 0) this.deleteButtonOff = false;
+  };
+
   openLoadModal(): void { 
     const options: ModalOptions = {
         data: 'Loading and Saving of the teams that you have hand-crafted has not yet been implemented. It is a work in progress! Check back later.',
@@ -120,11 +141,6 @@ export class TeamBuilderComponent implements OnInit {
     const subModal: HcModal<LoadModalComponent> = this.modalService.open(LoadModalComponent, options);
     subModal.result.subscribe(res => (this.loadResult = res));
   }
-
-  async updateTeam( newMember: any ) {
-    this.team.push(newMember);
-    if (this.team.length === 6) this.addButtonOff = !this.addButtonOff;
-  };
 
   openAddMemberModal(): void { 
     const options: ModalOptions = {
