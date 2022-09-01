@@ -22,6 +22,7 @@ export class TeamBuilderComponent implements OnInit {
 
   natures: any;
   dynaTooltip:string = "Dynamax!";
+  revertTooltip:string = "Revert to base form";
   gigaTooltip:string = "Gigantamax!";
   alignment = 'left';
   natureControl = new FormControl('');
@@ -86,7 +87,9 @@ export class TeamBuilderComponent implements OnInit {
   updateMember = async (guid: string, form: string) => {
     let value: string[] = [];
 
-    form == "useFormControl" ? value = this.specialFormsControl.value.split("::") : value = [guid, form]
+    form == "useFormControl" ? value = this.specialFormsControl.value.split("::") : value = [guid, form];
+
+    console.log(value)
     
     const updatedMember: ITeamMember = await this.pokeApiService.addMember(value[1], "updateMember", value[0]);
 
@@ -97,8 +100,12 @@ export class TeamBuilderComponent implements OnInit {
       } 
       return;
     }).indexOf(updatedMember.guid)
-    if (updatedMember.name.includes("-mega") || updatedMember.name.includes("-gmax")) this.team.hasAdvancedFrom = true;
+
     this.team.teamList.splice( i, 1, updatedMember);
+
+    this.team.teamList.forEach(e => {
+      e.isAdvancedForm === true ? this.team.hasAdvancedFrom = true : this.team.hasAdvancedFrom = false;
+    })
     //TODO:
       //Do not allow megas and gmax appear in the form list...
   };

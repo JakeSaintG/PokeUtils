@@ -39,6 +39,9 @@
             <button hc-button class="dyna-btn" buttonStyle="secondary" buttonStyle="pink" [hcTooltip]="dynaTooltip" *ngIf="this.team.hasAdvancedFrom === false">
                 <img src="assets/dynamax.webp" height="30px" alt="Dynamax Icon">
             </button>
+            <button hc-button class="revert-btn" buttonStyle="secondary" [hcTooltip]="revertTooltip" *ngIf="pokemon.isAdvancedForm === true" (click)="updateMember(pokemon.guid, pokemon.forms[0])">
+                <hc-icon hcMenuIcon fontSet="fa" fontIcon="fa-rotate-right"></hc-icon>
+            </button>
             <div *ngIf="pokemon.gigantamaxForms.length > 0 && this.team.hasAdvancedFrom === false">
                 <button hc-button class="giga-btn" buttonStyle="pink" [hcTooltip]="gigaTooltip" *ngFor="let gmaxForm of pokemon.gigantamaxForms" (click)="updateMember(pokemon.guid, gmaxForm)">
                     <hc-icon hcMenuIcon fontSet="fa" fontIcon="fa-cloud"></hc-icon>
