@@ -8,6 +8,7 @@ import { PokeApiService} from 'src/app/services/pokeapi.service';
   templateUrl: './add-team-member-modal.component.html',
   styleUrls: ['./add-team-member-modal.component.scss']
 })
+
 export class AddTeamMemberModalComponent implements OnInit  {
 
   inputControl = new FormControl('');
@@ -24,6 +25,5 @@ export class AddTeamMemberModalComponent implements OnInit  {
     this.activeModal.close(member);
   };
 
-  cancel(): void {this.activeModal.dismiss();};
-
+  cancel(): void {this.activeModal.dismiss()};
 }

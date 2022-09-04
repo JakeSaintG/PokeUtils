@@ -12,8 +12,8 @@ export class AboutModalComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  close(): void { this.activeModal.close();};
+  close(): void { this.activeModal.close()};
 
-  cancel(): void {this.activeModal.dismiss();};
+  cancel(): void {this.activeModal.dismiss()};
 
 }

@@ -3,7 +3,6 @@
   brandIcon="assets/brandIcon.png"
   [fixedTop]="true"
 >
-  
   <hc-navbar-mobile-menu>
     <hc-list>
       <hc-list-item routerLink="" routerLinkActive="active-link">
@@ -24,8 +23,12 @@
     </hc-list>
   </hc-navbar-mobile-menu>
 
-  <hc-navbar-link [active]="true" uri="undefined" linkText="Home"></hc-navbar-link>
-  
+  <hc-navbar-link
+    [active]="true"
+    uri="undefined"
+    linkText="Home"
+  ></hc-navbar-link>
+
   <!-- TODO: Move this to an app switcher -->
   <hc-navbar-dropdown linkText="Applications">
     <div hcMenu>
@@ -58,7 +61,7 @@
       fontSet="fa"
       fontIcon="fa-github"
       tabindex="0"
-    >    
+    >
     </hc-icon>
   </a>
 
@@ -94,7 +97,11 @@
       <hc-icon hcMenuIcon fontSet="fa" fontIcon="fa-lightbulb-o"></hc-icon>
       <span hcMenuText>Request a feature</span>
     </a>
-    <a hcMenuItem href="https://github.com/JakeSaintG/PokeUtils/issues" target="_blank">
+    <a
+      hcMenuItem
+      href="https://github.com/JakeSaintG/PokeUtils/issues"
+      target="_blank"
+    >
       <hc-icon hcMenuIcon fontSet="fa" fontIcon="fa-bug"></hc-icon>
       <span hcMenuText>Report an issue</span>
     </a>
@@ -123,4 +130,3 @@
     </button>
   </div>
 </hc-pop>
-

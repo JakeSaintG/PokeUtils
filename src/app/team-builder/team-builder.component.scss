@@ -1,44 +1,82 @@
 /* ============================================
             Types and Colors Key
 ============================================*/
-$bug: #C3D21F;
-$electric: #FEE844;
-$fire: #FA5442;
-$grass: #86D04C;
-$normal: #B8B7A9;
-$rock: #CEBD72;
-$dark: #8D6855;
-$fairy: #F9ADFF;
-$flying: #79A3FF;
-$ground: #F0CF5C;
-$poison: #AA5DA1;
-$steel: #C4C2D9;
-$dragon: #8975FF;
-$fighting: #A75545;
-$ghost: #7975D7;
-$ice: #96F1FF;
-$psychic: #FA64B5;
-$water: #56B0FF;
+$bug: #c3d21f;
+$electric: #fee844;
+$fire: #fa5442;
+$grass: #86d04c;
+$normal: #b8b7a9;
+$rock: #cebd72;
+$dark: #8d6855;
+$fairy: #f9adff;
+$flying: #79a3ff;
+$ground: #f0cf5c;
+$poison: #aa5da1;
+$steel: #c4c2d9;
+$dragon: #8975ff;
+$fighting: #a75545;
+$ghost: #7975d7;
+$ice: #96f1ff;
+$psychic: #fa64b5;
+$water: #56b0ff;
 $missingNo: #000000;
-.bug {background-color: $bug} 
-.electric  {background-color: $electric} 
-.fire {background-color: $fire} 
-.grass {background-color: $grass} 
-.normal {background-color: $normal} 
-.rock {background-color: $rock} 
-.dark {background-color: $dark} 
-.fairy {background-color: $fairy} 
-.flying {background-color: $flying} 
-.ground {background-color: $ground} 
-.poison {background-color: $poison} 
-.steel {background-color: $steel} 
-.dragon {background-color: $dragon} 
-.fighting {background-color: $fighting} 
-.ghost {background-color: $ghost} 
-.ice {background-color: $ice} 
-.psychic {background-color: $psychic} 
-.water {background-color: $water}
-.Ň̷̨ȕ̷͕l̷͇̑l̸̠̏ {background-color: $missingNo};//No ragrets
+.bug {
+    background-color: $bug;
+}
+.electric {
+    background-color: $electric;
+}
+.fire {
+    background-color: $fire;
+}
+.grass {
+    background-color: $grass;
+}
+.normal {
+    background-color: $normal;
+}
+.rock {
+    background-color: $rock;
+}
+.dark {
+    background-color: $dark;
+}
+.fairy {
+    background-color: $fairy;
+}
+.flying {
+    background-color: $flying;
+}
+.ground {
+    background-color: $ground;
+}
+.poison {
+    background-color: $poison;
+}
+.steel {
+    background-color: $steel;
+}
+.dragon {
+    background-color: $dragon;
+}
+.fighting {
+    background-color: $fighting;
+}
+.ghost {
+    background-color: $ghost;
+}
+.ice {
+    background-color: $ice;
+}
+.psychic {
+    background-color: $psychic;
+}
+.water {
+    background-color: $water;
+}
+.Ň̷̨ȕ̷͕l̷͇̑l̸̠̏ {
+    background-color: $missingNo;
+} //No ragrets
 /* ============================================
             Types and Colors Key
 ============================================*/
@@ -54,7 +92,7 @@ h1 {
 
 .builder-menu {
     margin-bottom: 1rem;
-    
+
     button {
         margin: 1rem 1rem 0 0;
     }
@@ -67,7 +105,7 @@ h1 {
         display: flex;
         flex-direction: column;
         text-align: center;
-        
+
         img {
             width: 40%;
             margin: auto;
@@ -81,41 +119,41 @@ h1 {
 
 .team-member {
     margin-top: 1rem;
-    border: 1px solid #CCCCCC;
+    border: 1px solid #cccccc;
     display: grid;
-    grid-template-areas: 
+    grid-template-areas:
         "options"
         "head"
         "stats"
         "finetune";
-    
+
     .member-header {
         width: calc(100% - 2rem);
-        padding: .5rem;
+        padding: 0.5rem;
         margin: 1rem;
         display: flex;
         height: 95% !important;
         flex-direction: column;
         align-content: center;
         grid-area: head;
-    
+
         h2 {
             text-align: center;
             margin: 0;
         }
-    
+
         img {
             height: 120px;
             width: 120px;
             margin: 0 auto;
         }
-    
+
         div {
             display: flex;
             align-content: center;
             flex-direction: row;
-            margin: .5rem;
-    
+            margin: 0.5rem;
+
             .type-icon {
                 display: inline-block;
                 color: white;
@@ -127,37 +165,37 @@ h1 {
                 border: 3px solid white;
                 border-radius: 5px;
                 box-shadow: 0px 0px 4px 3px #000000;
-                text-shadow: 2px 2px 5px rgba(0,0,0,0.71);
+                text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.71);
                 border-radius: 17px;
-                font-family: 'Josefin Sans', sans-serif;
+                font-family: "Josefin Sans", sans-serif;
             }
         }
     }
-    
+
     .stats {
         display: flex;
         flex-direction: column;
         width: 100%;
         grid-area: stats;
         margin-top: 1rem;
-    
+
         .stat {
             display: flex;
             margin: auto 0;
             height: 2.5rem;
             text-align: center;
             align-content: space-between;
-            border: #CCCCCC solid 2px;
-    
+            border: #cccccc solid 2px;
+
             span:first-child {
                 width: 15%;
                 margin: auto 0;
             }
-    
+
             span:last-child {
                 margin: auto 0;
                 padding: 5px;
-                background-color: #006D9A;
+                background-color: #006d9a;
                 height: 100%;
                 text-align: left;
                 color: white;
@@ -165,42 +203,42 @@ h1 {
             }
         }
     }
-    
+
     .pokemon-options {
         width: 100%;
-        background-color: #CCCCCC;
+        background-color: #cccccc;
         display: flex;
         flex-direction: row;
         align-content: space-between;
         grid-area: options;
-    
+
         div {
             margin: auto;
             display: flex;
             flex-direction: row;
         }
-    
+
         div button:nth-child(3) {
             margin-left: 5px;
         }
-    
+
         button {
             min-width: 35px;
             width: 35px;
             margin: 5px auto;
-    
+
             hc-icon {
                 color: #000000;
             }
         }
-    
+
         .giga-btn {
             hc-icon {
-                color:#a082dd;
+                color: #a082dd;
             }
         }
     }
-    
+
     hc-accordion {
         grid-area: finetune;
 
@@ -210,7 +248,7 @@ h1 {
             padding-right: 1rem !important;
 
             hc-select {
-                margin: .5rem;
+                margin: 0.5rem;
             }
         }
     }
@@ -224,7 +262,7 @@ h1 {
     .stats {
         margin-top: 0;
     }
-    
+
     hc-form-field {
         flex-direction: row !important;
         height: 3.5rem;
@@ -239,53 +277,52 @@ h1 {
     .builder-menu {
         display: flex;
     }
-    
+
     .team-member {
         grid-template-columns: 20% 76% 4%;
-        grid-template-areas: 
-        "head stats options"
-        "finetune finetune options";
+        grid-template-areas:
+            "head stats options"
+            "finetune finetune options";
 
         .member-header {
             height: 100%;
-            padding: .5rem;
+            padding: 0.5rem;
             margin: 1rem;
-    
+
             img {
                 margin: auto;
             }
         }
-    
+
         .stats {
-            padding-right: .5rem;
+            padding-right: 0.5rem;
             margin-top: 1rem;
-        
+
             .stat {
                 span:first-child {
                     width: 10%;
                 }
             }
         }
-    
+
         .pokemon-options {
             flex-direction: column;
-    
+
             button {
                 margin: auto;
             }
-    
+
             div {
                 flex-direction: column;
             }
-    
+
             div button {
                 margin: 5px auto;
             }
-        
+
             div button:nth-child(3) {
                 margin: 0 auto 5px auto;
             }
         }
     }
-
 }
