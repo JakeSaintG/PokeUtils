@@ -1,9 +1,10 @@
 export interface ITeamMember {
     name: string
+    id: number
     guid: string
     img: string
     types: string[]
-    forms: string[]
+    forms: IForm[]
     abilities: string[]
     isAdvancedForm: boolean
     megaForms: string[]
@@ -39,4 +40,12 @@ export interface ITeamMember {
 export interface ITeam {
   hasAdvancedFrom: boolean,
   teamList: ITeamMember[]
+}
+
+export interface IForm {
+  is_default: boolean
+  pokemon: {
+    name: string
+    url: string
+  }
 }
