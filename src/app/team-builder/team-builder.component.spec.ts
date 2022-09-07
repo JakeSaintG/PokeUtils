@@ -34,6 +34,7 @@ describe('TeamBuilderComponent', () => {
   let testTeam: ITeamMember[] = [
     {
       name: "Mudkip",
+      id: 258,
       guid: "1",
       img: "https://www.serebii.net/swordshield/pokemon/258.png",
       types: [
@@ -44,6 +45,7 @@ describe('TeamBuilderComponent', () => {
         "torrent",
         "damp"
       ],
+      isAdvancedForm: false,
       megaForms: [],
       gigantamaxForms: [],
       baseStats: {
@@ -76,6 +78,7 @@ describe('TeamBuilderComponent', () => {
     {
       name: "Swampert",
       guid: "2",
+      id: 260,
       img: "https://www.serebii.net/swordshield/pokemon/260.png",
       types: [
         "water",
@@ -86,6 +89,7 @@ describe('TeamBuilderComponent', () => {
         "torrent",
         "damp"
       ],
+      isAdvancedForm: false,
       megaForms: ["swampert-mega"],
       gigantamaxForms: [],
       baseStats: {
@@ -118,6 +122,7 @@ describe('TeamBuilderComponent', () => {
     {
       name: "Charizard",
       guid: "3",
+      id: 6,
       img: "https://www.serebii.net/swordshield/pokemon/006.png",
       types: [
         "fire",
@@ -128,6 +133,7 @@ describe('TeamBuilderComponent', () => {
         "blaze",
         "solar-power"
       ],
+      isAdvancedForm: false,
       megaForms: ["charizard-mega-y","charizard-mega-y"],
       gigantamaxForms: ["charizard-gmax"],
       baseStats: {
@@ -159,6 +165,7 @@ describe('TeamBuilderComponent', () => {
     },
     {
       name: "pikachu",
+      id: 25,
       guid: "4",
       img: "https://www.serebii.net/swordshield/pokemon/025.png",
       types: [
@@ -170,6 +177,7 @@ describe('TeamBuilderComponent', () => {
         "lightning-rod",
         ""
       ],
+      isAdvancedForm: false,
       megaForms: [],
       gigantamaxForms: ["pikachu-gmax"],
       baseStats: {
@@ -201,6 +209,7 @@ describe('TeamBuilderComponent', () => {
     },
     {
       name: "Gengar",
+      id: 94,
       guid: "5",
       img: "https://www.serebii.net/swordshield/pokemon/094.png",
       types: [
@@ -211,6 +220,7 @@ describe('TeamBuilderComponent', () => {
       abilities: [
         "cursed-body"
       ],
+      isAdvancedForm: false,
       megaForms: ["gengar-mega"],
       gigantamaxForms: ["gengar-gmax"],
       baseStats: {
@@ -242,6 +252,7 @@ describe('TeamBuilderComponent', () => {
     },
     {
       name: "meowth",
+      id: 52,
       guid: "6",
       img: "https://www.serebii.net/swordshield/pokemon/052.png",
       types: [
@@ -256,6 +267,7 @@ describe('TeamBuilderComponent', () => {
         "technician",
         "unnerve"
       ],
+      isAdvancedForm: false,
       megaForms: [],
       gigantamaxForms: ["meowth-gmax"],
       baseStats: {

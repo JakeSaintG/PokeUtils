@@ -88,8 +88,6 @@ export class TeamBuilderComponent implements OnInit {
     let value: string[] = [];
 
     form == "useFormControl" ? value = this.specialFormsControl.value.split("::") : value = [guid, form];
-
-    console.log(value)
     
     const updatedMember: ITeamMember = await this.pokeApiService.addMember(value[1], "updateMember", value[0]);
 

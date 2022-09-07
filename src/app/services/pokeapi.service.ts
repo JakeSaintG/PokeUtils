@@ -24,8 +24,9 @@ export class PokeApiService {
 
     try {
       let masterData = await this.getMasterData(request, guid);
-      let detailedData = await this.getDexDetails(masterData);
-      return await this.getPokeImg(detailedData);
+      let detailedData = await this.getSpeciesData(masterData);
+      let finalizedData = await this.getFormData(detailedData);
+      return finalizedData ;
     } catch (error) {
       return this.returnMissingNo(error);
     };
@@ -56,9 +57,10 @@ export class PokeApiService {
       if (e.name.includes("mega") && e.name.includes(request)) megaForms.push(e.name);
     })
 
-    this.masterList.forEach(e => {
-      if (e.name.includes(request) && this.removeJunkForms(e.name) ) alternateForms.push(e.name);
-    })
+    let urls = {
+      formsUrl: data.forms[0].url,
+      speciesUrl: data.species.url
+    }
 
     let isAdvancedForm: boolean = data.name.includes("-mega") || data.name.includes("-gmax") ?  true : false;
 
@@ -72,7 +74,9 @@ export class PokeApiService {
     };
 
     return {
+      urls: urls,
       name: data.name,
+      id: data.id,
       guid: `${guid}`,
       img: "assets/MissingNo.webp",
       types: types,
@@ -95,23 +99,16 @@ export class PokeApiService {
         the team builder but getting the extra details for the PokeDex.
   */ 
 
-  getDexDetails = async (data: any) : Promise<any> => {
-    // let dexDetails = await this.http
-      // .get<Promise<any>>(`https://pokeapi.co/api/v2/pokemon-species/${data.id}`)
-      // .toPromise();
-    // return dexDetails;
+  getSpeciesData = async (data: any) : Promise<any> => {
+    let speciesData = await this.http
+      .get<Promise<any>>(`${data.urls.speciesUrl}`)
+      .toPromise();
+    data.forms = speciesData.varieties;
+    return data;
     
     //TODO: 
-      // USE VARITIES ON THE pokemon-species AND THEIR DEX NO. TO RETURN A BETTER LIST OF FORMS!!!
-        // Need to get dex no. from previous call and pass it in here....
       // Forms like unown and flabebe are broken...
         // Giratina just doesn't work?
-    const detailedData: Promise<any> = new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(data);
-      });
-    });
-    return detailedData;
   };
 
   removeJunkForms = (nameToCheck: string) => {
@@ -119,12 +116,13 @@ export class PokeApiService {
     return junkForms.some(e => nameToCheck.includes(e)) ? false : true;
   };
 
-  getPokeImg = async (data: any): Promise<ITeamMember> => {
-    let dexDetails = await this.http
-      .get<Promise<any>>(`https://pokeapi.co/api/v2/pokemon-form/${data.name}`)
+  getFormData = async (data: any): Promise<ITeamMember> => {
+    let formsData = await this.http
+      .get<Promise<any>>(`${data.urls.formsUrl}`)
       .toPromise();
-    
-    data.img = dexDetails.sprites.front_default;
+
+    delete formsData.urls;
+    data.img = formsData.sprites.front_default;
     return data;
   }
 
@@ -183,6 +181,7 @@ export class PokeApiService {
     console.log(`MissingNo was generated due to: ${error}`);
     return {
       name: `MissingNo`,
+      id: 0,
       guid: `${guid}`,
       img: "assets/MissingNo.webp",
       types: [
