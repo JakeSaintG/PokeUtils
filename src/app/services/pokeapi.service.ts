@@ -163,6 +163,14 @@ export class PokeApiService {
       {
         APIName: "flabebe",
         possibleInputs: ["flabébé","flabebé","flabébe","flabebe"]
+      },
+      {
+        APIName: "nidoran-f",
+        possibleInputs: ["nidoran-f","nidoranf","nidoran f","nidoran♀","nidoran female","nidoran ♀","female nidoran"]
+      },
+      {
+        APIName: "nidoran-m",
+        possibleInputs: ["nidoran-m","nidoranm","nidoran m","nidoran♂","nidoran male","nidoran ♂","male nidoran"]
       }
     ];
 
