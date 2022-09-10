@@ -111,22 +111,16 @@ export class PokeApiService {
         // Giratina just doesn't work?
   };
 
-  removeJunkForms = (nameToCheck: string) => {
-    let junkForms: string[] = ["-totem", "-cap", "-star", "-spiky"];
-    return junkForms.some(e => nameToCheck.includes(e)) ? false : true;
-  };
-
   getFormData = async (data: any): Promise<ITeamMember> => {
     let formsData = await this.http
       .get<Promise<any>>(`${data.urls.formsUrl}`)
       .toPromise();
 
-    delete formsData.urls;
     data.img = formsData.sprites.front_default;
+    delete formsData.urls;
     return data;
   }
 
-  // Could benefit from being async? Does it need to be?
   preparePokeLists = () => {
     this.http.get<IListResults>(this.masterListUri).subscribe((res) => {
       this.masterList = res.results;
@@ -182,6 +176,11 @@ export class PokeApiService {
     if ( !request ) request = "missingno";
 
     return request;
+  };
+
+  removeJunkForms = (nameToCheck: string) => {
+    let junkForms: string[] = ["-totem", "-cap", "-star", "-spiky"];
+    return junkForms.some(e => nameToCheck.includes(e)) ? false : true;
   };
 
   returnMissingNo = async (error: unknown): Promise<ITeamMember> => {
