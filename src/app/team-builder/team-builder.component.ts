@@ -104,8 +104,6 @@ export class TeamBuilderComponent implements OnInit {
     this.team.teamList.forEach(e => {
       e.isAdvancedForm === true ? this.team.hasAdvancedFrom = true : this.team.hasAdvancedFrom = false;
     })
-    //TODO:
-      //Do not allow megas and gmax appear in the form list...
   };
 
   updateStats = () => {

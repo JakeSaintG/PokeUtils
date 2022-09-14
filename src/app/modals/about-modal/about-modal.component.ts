@@ -7,13 +7,8 @@ import {ActiveModal} from '@healthcatalyst/cashmere';
   styleUrls: ['./about-modal.component.scss']
 })
 export class AboutModalComponent implements OnInit {
-
   constructor(public activeModal: ActiveModal) {}
-
   ngOnInit(): void {}
-
   close(): void { this.activeModal.close()};
-
   cancel(): void {this.activeModal.dismiss()};
-
 }
