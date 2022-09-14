@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ITeamMember } from '../interfaces/ITeamMember';
+import { IForm, ITeamMember } from '../interfaces/ITeamMember';
 import { UUID } from 'angular2-uuid';
 import { HttpClient } from '@angular/common/http';
 import { IListResult, IListResults } from '../interfaces/IMasterList';
@@ -78,7 +78,6 @@ export class PokeApiService {
       name: data.name,
       id: data.id,
       guid: `${guid}`,
-      img: "assets/MissingNo.webp",
       types: types,
       forms: alternateForms,
       abilities: abilities,
@@ -94,16 +93,19 @@ export class PokeApiService {
     };
   };
 
-  /*
-  Note: Could make this service reusable by skipping these extra details for
-        the team builder but getting the extra details for the PokeDex.
-  */ 
-
   getSpeciesData = async (data: any) : Promise<any> => {
     let speciesData = await this.http
       .get<Promise<any>>(`${data.urls.speciesUrl}`)
       .toPromise();
-    data.forms = speciesData.varieties;
+
+    data.forms = speciesData.varieties.filter((e: IForm) => 
+      !e.pokemon.name.includes('-mega')
+    );
+
+    data.forms = data.forms.filter((e: IForm) => 
+      !e.pokemon.name.includes('-gmax')
+    );
+
     return data;
     
     //TODO: 
@@ -168,7 +170,7 @@ export class PokeApiService {
       }
     ];
 
-    wackyNames.forEach(e => { if ( e.possibleInputs.includes(userInput) ) request = e.APIName;});
+    wackyNames.find(e => { if ( e.possibleInputs.includes(userInput) ) request = e.APIName;});
 
     if ( !request ) request = (this.masterList.find(e => e.name.includes(userInput))?.name);
     if ( !request ) request = (this.megaList.find(e => e.name.includes(userInput))?.name);
