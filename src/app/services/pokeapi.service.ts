@@ -12,6 +12,7 @@ export class PokeApiService {
   masterList: IListResult[] = [];
   megaList: IListResult[] = [];
   gmaxList: IListResult[] = [];
+  specialForms: string[] = [`unown`,`burmy`,`deerling`,`shellos`,`gastrodon`,`arceus`,`cherrim`,`vivillon`,`deerling`,`sawsbuck`,`flabebe`,`floette`,`florges`,`furfrou`,`xerneas`,`silvally`]
 
   constructor(private http: HttpClient) { }
 
@@ -98,19 +99,32 @@ export class PokeApiService {
       .get<Promise<any>>(`${data.urls.speciesUrl}`)
       .toPromise();
 
-    data.forms = speciesData.varieties.filter((e: IForm) => 
-      !e.pokemon.name.includes('-mega')
-    );
+    if (this.specialForms.includes(data.name)) {
 
-    data.forms = data.forms.filter((e: IForm) => 
-      !e.pokemon.name.includes('-gmax')
-    );
+      let specForms = this.masterList.filter(e => e.name.includes(data.name));
+      data.forms = [];
+
+      specForms.forEach(e => {
+        data.forms.push({pokemon: {name: e.name}});
+      });
+
+    } else {
+
+      data.forms = speciesData.varieties.filter((e: IForm) => 
+        !e.pokemon.name.includes('-mega')
+      );
+
+      data.forms = data.forms.filter((e: IForm) => 
+        !e.pokemon.name.includes('-gmax')
+      );
+
+      data.forms = data.forms.filter((e: IForm) => 
+        this.removeJunkForms(e.pokemon.name)
+      );
+
+    }
 
     return data;
-    
-    //TODO: 
-      // Forms like unown and flabebe are broken...
-        // Giratina just doesn't work?
   };
 
   getFormData = async (data: any): Promise<ITeamMember> => {
@@ -134,7 +148,7 @@ export class PokeApiService {
 
       this.masterList.forEach((e, i, arr) => {
         if (e.name.includes("-mega") || e.name.includes("-gmax")) arr.splice(i, 1);
-      });
+      })
     });
   };
 
@@ -172,6 +186,7 @@ export class PokeApiService {
 
     wackyNames.find(e => { if ( e.possibleInputs.includes(userInput) ) request = e.APIName;});
 
+    if ( !request ) request = (this.specialForms.find(e => e.includes(userInput)));
     if ( !request ) request = (this.masterList.find(e => e.name.includes(userInput))?.name);
     if ( !request ) request = (this.megaList.find(e => e.name.includes(userInput))?.name);
     if ( !request ) request = (this.gmaxList.find(e => e.name.includes(userInput))?.name);
