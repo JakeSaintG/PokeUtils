@@ -65,4 +65,19 @@ describe('PokeApiService', () => {
       expect(SUT[11]).toEqual("duraludon-gmax");
     });
   });
+
+  //TODO: be better at writing tests and write them
+
+  // describe('filterForPokeAPI', () => {
+
+  //   it('should return the desired name for use with PokeAPI', () => {
+  //     //Arrange
+  //     let namesToTest = ["unown", "flabebe"]
+
+  //     //Act - taken directly from PokeAPI
+  //     service.getSpeciesData();
+  //     //Assert
+
+  //   });
+  // });
 });

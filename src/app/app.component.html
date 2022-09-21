@@ -1,132 +1,154 @@
 <hc-navbar
-  appIcon="assets/appIcon.png"
-  brandIcon="assets/brandIcon.png"
-  [fixedTop]="true"
+    appIcon="assets/appIcon.png"
+    brandIcon="assets/brandIcon.png"
+    [fixedTop]="true"
 >
-  <hc-navbar-mobile-menu>
-    <hc-list>
-      <hc-list-item routerLink="" routerLinkActive="active-link">
-        <span hcListLine>Home</span>
-      </hc-list-item>
-      <a href="example.com">
-        <hc-list-item><span hcListLine>PokéDex (WIP)</span></hc-list-item>
-      </a>
-      <a href="">
-        <hc-list-item><span hcListLine>PokéTracker (WIP)</span></hc-list-item>
-      </a>
-    </hc-list>
-    <hr />
-    <hc-list>
-      <a href="http://example.com" target="_blank">
-        <hc-list-item><span hcListLine>View on GitHub</span></hc-list-item>
-      </a>
-    </hc-list>
-  </hc-navbar-mobile-menu>
+    <hc-navbar-mobile-menu>
+        <hc-list>
+            <hc-list-item routerLink="" routerLinkActive="active-link">
+                <span hcListLine>Home</span>
+            </hc-list-item>
+            <a href="example.com">
+                <hc-list-item
+                    ><span hcListLine>PokéDex (WIP)</span></hc-list-item
+                >
+            </a>
+            <a href="">
+                <hc-list-item
+                    ><span hcListLine>PokéTracker (WIP)</span></hc-list-item
+                >
+            </a>
+        </hc-list>
+        <hr />
+        <hc-list>
+            <a href="http://example.com" target="_blank">
+                <hc-list-item
+                    ><span hcListLine>View on GitHub</span></hc-list-item
+                >
+            </a>
+        </hc-list>
+    </hc-navbar-mobile-menu>
 
-  <hc-navbar-link
-    [active]="true"
-    uri="undefined"
-    linkText="Home"
-  ></hc-navbar-link>
+    <hc-navbar-link
+        [active]="true"
+        uri="undefined"
+        linkText="Home"
+    ></hc-navbar-link>
 
-  <!-- TODO: Move this to an app switcher -->
-  <hc-navbar-dropdown linkText="Applications">
-    <div hcMenu>
-      <button hcMenuItem>
-        <hc-icon hcMenuIcon fontSet="fa" fontIcon="fa-book"></hc-icon>
-        <span hcMenuText>PokéDex (WIP)</span>
-      </button>
-      <button hcMenuItem>
-        <hc-icon hcMenuIcon fontSet="fa" fontIcon="fa-wrench"></hc-icon>
-        <span hcMenuText>Pokémon Team Builder (WIP)</span>
-      </button>
-      <button hcMenuItem>
-        <hc-icon hcMenuIcon fontSet="fa" fontIcon="fa-list"></hc-icon>
-        <span hcMenuText>PokéTracker (WIP)</span>
-      </button>
-    </div>
-  </hc-navbar-dropdown>
+    <!-- TODO: Move this to an app switcher -->
+    <hc-navbar-dropdown linkText="Applications">
+        <div hcMenu>
+            <button hcMenuItem>
+                <hc-icon hcMenuIcon fontSet="fa" fontIcon="fa-book"></hc-icon>
+                <span hcMenuText>PokéDex (WIP)</span>
+            </button>
+            <button hcMenuItem>
+                <hc-icon hcMenuIcon fontSet="fa" fontIcon="fa-wrench"></hc-icon>
+                <span hcMenuText>Pokémon Team Builder (WIP)</span>
+            </button>
+            <button hcMenuItem>
+                <hc-icon hcMenuIcon fontSet="fa" fontIcon="fa-list"></hc-icon>
+                <span hcMenuText>PokéTracker (WIP)</span>
+            </button>
+        </div>
+    </hc-navbar-dropdown>
 
-  <hc-icon
-    class="hc-navbar-icon"
-    fontSet="fa"
-    fontIcon="fa-question-circle-o"
-    [hcPop]="options"
-    tabindex="0"
-  ></hc-icon>
-
-  <a href="https://github.com/JakeSaintG/PokeUtils" target="_blank">
     <hc-icon
-      class="hc-navbar-icon"
-      fontSet="fa"
-      fontIcon="fa-github"
-      tabindex="0"
-    >
-    </hc-icon>
-  </a>
+        class="hc-navbar-icon"
+        fontSet="fa"
+        fontIcon="fa-question-circle-o"
+        [hcPop]="options"
+        tabindex="0"
+    ></hc-icon>
 
-  <span class="hc-navbar-vertical-separator"></span>
-  <div class="hc-navbar-username" *ngIf="user" [hcPop]="user" tabindex="0">
-    <span>
-      <span>{{ username }}</span>
-      <br />
-      <span class="hc-navbar-username-subtext">{{ organization }}</span>
-    </span>
-    <hc-icon fontSet="fa" fontIcon="fa-angle-down"></hc-icon>
-  </div>
+    <a href="https://github.com/JakeSaintG/PokeUtils" target="_blank">
+        <hc-icon
+            class="hc-navbar-icon"
+            fontSet="fa"
+            fontIcon="fa-github"
+            tabindex="0"
+        >
+        </hc-icon>
+    </a>
+
+    <span class="hc-navbar-vertical-separator"></span>
+    <div class="hc-navbar-username" *ngIf="user" [hcPop]="user" tabindex="0">
+        <span>
+            <span>{{ username }}</span>
+            <br />
+            <span class="hc-navbar-username-subtext">{{ organization }}</span>
+        </span>
+        <hc-icon fontSet="fa" fontIcon="fa-angle-down"></hc-icon>
+    </div>
 </hc-navbar>
 
 <pkutil-team-builder></pkutil-team-builder>
 
 <hc-pop
-  #options
-  [autoCloseOnContentClick]="true"
-  [showArrow]="false"
-  horizontalAlign="end"
+    #options
+    [autoCloseOnContentClick]="true"
+    [showArrow]="false"
+    horizontalAlign="end"
 >
-  <div hcMenu>
-    <a hcMenuItem href="https://pokeapi.co/" target="_blank">
-      <hc-icon hcMenuIcon fontSet="fa" fontIcon="fa-book"></hc-icon>
-      <span hcMenuText>PokéAPI</span>
-    </a>
-    <a hcMenuItem href="https://cashmere.healthcatalyst.net/" target="_blank">
-      <hc-icon hcMenuIcon fontSet="fa" fontIcon="fa-book"></hc-icon>
-      <span hcMenuText>Cashmere</span>
-    </a>
-    <a hcMenuItem href="http://example.com" target="_blank">
-      <hc-icon hcMenuIcon fontSet="fa" fontIcon="fa-lightbulb-o"></hc-icon>
-      <span hcMenuText>Request a feature</span>
-    </a>
-    <a
-      hcMenuItem
-      href="https://github.com/JakeSaintG/PokeUtils/issues"
-      target="_blank"
-    >
-      <hc-icon hcMenuIcon fontSet="fa" fontIcon="fa-bug"></hc-icon>
-      <span hcMenuText>Report an issue</span>
-    </a>
-    <div hcMenuItem hcDivider></div>
-    <button hcMenuItem (click)="openAboutModal()">
-      <hc-icon hcMenuIcon fontSet="fa" fontIcon="fa-info-circle"></hc-icon>
-      <span hcMenuText>About</span>
-    </button>
-    <button hcMenuItem (click)="openNewsModal()">
-      <hc-icon hcMenuIcon fontSet="fa" fontIcon="fa-bullhorn"></hc-icon>
-      <span hcMenuText>Find out what's new</span>
-    </button>
-  </div>
+    <div hcMenu>
+        <a hcMenuItem href="https://pokeapi.co/" target="_blank">
+            <hc-icon hcMenuIcon fontSet="fa" fontIcon="fa-book"></hc-icon>
+            <span hcMenuText>PokéAPI</span>
+        </a>
+        <a
+            hcMenuItem
+            href="https://cashmere.healthcatalyst.net/"
+            target="_blank"
+        >
+            <hc-icon hcMenuIcon fontSet="fa" fontIcon="fa-book"></hc-icon>
+            <span hcMenuText>Cashmere</span>
+        </a>
+        <a hcMenuItem href="http://example.com" target="_blank">
+            <hc-icon
+                hcMenuIcon
+                fontSet="fa"
+                fontIcon="fa-lightbulb-o"
+            ></hc-icon>
+            <span hcMenuText>Request a feature</span>
+        </a>
+        <a
+            hcMenuItem
+            href="https://github.com/JakeSaintG/PokeUtils/issues"
+            target="_blank"
+        >
+            <hc-icon hcMenuIcon fontSet="fa" fontIcon="fa-bug"></hc-icon>
+            <span hcMenuText>Report an issue</span>
+        </a>
+        <div hcMenuItem hcDivider></div>
+        <button hcMenuItem (click)="openAboutModal()">
+            <hc-icon
+                hcMenuIcon
+                fontSet="fa"
+                fontIcon="fa-info-circle"
+            ></hc-icon>
+            <span hcMenuText>About</span>
+        </button>
+        <button hcMenuItem (click)="openNewsModal()">
+            <hc-icon hcMenuIcon fontSet="fa" fontIcon="fa-bullhorn"></hc-icon>
+            <span hcMenuText>Find out what's new</span>
+        </button>
+    </div>
 </hc-pop>
 
 <hc-pop
-  #user
-  [autoCloseOnContentClick]="true"
-  [showArrow]="false"
-  horizontalAlign="end"
+    #user
+    [autoCloseOnContentClick]="true"
+    [showArrow]="false"
+    horizontalAlign="end"
 >
-  <div hcMenu>
-    <button hcMenuItem>
-      <hc-icon hcMenuIcon fontSet="hc-icons" fontIcon="hci-sign-out"></hc-icon>
-      <span hcMenuText>Log out (WIP)</span>
-    </button>
-  </div>
+    <div hcMenu>
+        <button hcMenuItem>
+            <hc-icon
+                hcMenuIcon
+                fontSet="hc-icons"
+                fontIcon="hci-sign-out"
+            ></hc-icon>
+            <span hcMenuText>Log out (WIP)</span>
+        </button>
+    </div>
 </hc-pop>
