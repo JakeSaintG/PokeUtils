@@ -7,7 +7,14 @@
     <button hc-button class="export-btn" buttonStyle="secondary" [hcTooltip]="exportTooltip">Export</button>
     <button hc-button class="del-btn" buttonStyle="destructive" (click)="deleteTeam()" [disabled]="deleteButtonOff">Delete Team</button>
 </div>
-<hc-tile class="team-container">
+
+<hc-tile class="team-empty" *ngIf="team.teamList.length === 0">
+    <h2>Your team is empty!</h2>
+    <p>Please start by adding a Pokémon</p>
+    <img src="assets/starter.png" alt="Choose your started img from Pokémon Red/Blue">
+</hc-tile>
+
+<hc-tile class="team-container" *ngIf="team.teamList.length !== 0">
     <section *ngIf="team.teamList.length === 0">
         <h2>Your team is empty!</h2>
         <p>Please start by adding a Pokémon</p>
