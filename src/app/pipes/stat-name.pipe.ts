@@ -7,13 +7,13 @@ export class StatNamePipe implements PipeTransform{
         if (value === "hp") {
             return "HP";
         } else if (value === "atk") {
-            return "Attack";
+            return "Atk";
         } else if (value === "def") {
-            return "Defense";
+            return "Def";
         } else if (value === "spAtk") {
-            return "Sp. Attack";
+            return "Sp. Atk";
         } else if (value === "spDef") {
-            return "Sp. Defense";
+            return "Sp. Def";
         } else {
             return "Speed";
         };
