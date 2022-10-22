@@ -15,11 +15,6 @@
 </hc-tile>
 
 <hc-tile class="team-container" *ngIf="team.teamList.length !== 0">
-    <section *ngIf="team.teamList.length === 0">
-        <h2>Your team is empty!</h2>
-        <p>Please start by adding a Pokémon</p>
-        <img src="assets/starter.png" alt="Choose your started img from Pokémon Red/Blue">
-    </section>
     <div *ngFor = 'let pokemon of team.teamList' class="team-member" id="{{pokemon.guid}}">
         <hc-tile class="member-header">
             <h2>{{pokemon.name | diplayname | titlecase }}</h2>
@@ -34,7 +29,7 @@
                 <span style="width:{{stat.value | statvalue}}%">{{stat.value}}</span>
             </div>
         </div>
-        <div class="pokemon-options" >
+        <div class="pokemon-options">
             <button hc-button (click)="deleteMember(pokemon.guid)" class="remove-btn" buttonStyle="destructive">
                 <hc-icon hcMenuIcon fontSet="fa" fontIcon="fa-trash"></hc-icon>
             </button>
