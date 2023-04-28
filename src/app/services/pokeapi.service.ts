@@ -51,11 +51,11 @@ export class PokeApiService {
     });
 
     this.gmaxList.forEach(e => {
-      if (e.name.includes("gmax") && e.name.includes(request)) gigantamaxForms.push(e.name);
+      if ((e.name.includes("-gmax")) && e.name.includes(request)) gigantamaxForms.push(e.name);
     })
 
     this.megaList.forEach(e => {
-      if (e.name.includes("mega") && e.name.includes(request)) megaForms.push(e.name);
+      if (e.name.includes("-mega") && e.name.includes(request)) megaForms.push(e.name);
     })
 
     let urls = {
