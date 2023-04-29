@@ -51,7 +51,9 @@ export class PokeApiService {
     });
 
     this.gmaxList.forEach(e => {
-      if ((e.name.includes("-gmax")) && e.name.includes(request)) gigantamaxForms.push(e.name);
+      if ((e.name.includes("-gmax") || e.name.includes("-eternamax")) && e.name.includes(request)) {
+        gigantamaxForms.push(e.name);
+      };
     })
 
     this.megaList.forEach(e => {
@@ -63,7 +65,7 @@ export class PokeApiService {
       speciesUrl: data.species.url
     }
 
-    let isAdvancedForm: boolean = data.name.includes("-mega") || data.name.includes("-gmax") ?  true : false;
+    let isAdvancedForm: boolean = (data.name.includes("-mega" ) || data.name.includes("-eternamax") || data.name.includes("-gmax")) ?  true : false;
 
     let stats =  {
       hp: data.stats[0].base_stat,
@@ -116,7 +118,7 @@ export class PokeApiService {
       );
 
       data.forms = data.forms.filter((e: IForm) => 
-        !e.pokemon.name.includes('-gmax')
+        !e.pokemon.name.includes('-gmax') || !e.pokemon.name.includes('-eternamax')
       );
 
       data.forms = data.forms.filter((e: IForm) => 
@@ -145,10 +147,11 @@ export class PokeApiService {
       this.masterList.forEach(e => {
         if (e.name.includes("-mega")) this.megaList.push(e);
         if (e.name.includes("-gmax")) this.gmaxList.push(e);
+        if (e.name.includes("-eternamax")) this.gmaxList.push(e);
       })
 
       this.masterList.forEach((e, i, arr) => {
-        if (e.name.includes("-mega") || e.name.includes("-gmax")) arr.splice(i, 1);
+        if (e.name.includes("-mega") || e.name.includes("-gmax") || e.name.includes("-eternamax")) arr.splice(i, 1);
       })
     });
   };
