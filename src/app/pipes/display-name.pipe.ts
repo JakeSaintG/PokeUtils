@@ -17,6 +17,11 @@ export class DisplayNamePipe implements PipeTransform {
             let splitName = name.split("-"); 
             name = `Gigantamax ${splitName[0]}`;
         };
+
+        if (name.includes("-eternamax")) {
+            let splitName = name.split("-"); 
+            name = `Eternamax ${splitName[0]}`;
+        };
         
         if (name === "mr-mime") {
             name = `Mr. Mime`;
