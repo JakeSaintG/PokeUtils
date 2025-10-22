@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import {
     ListModule,
     TileModule,
@@ -31,7 +31,7 @@ import {
     SelectModule
   ],
   providers: [
-    FormControl
+    UntypedFormControl
   ]
 })
 export class CashmereModule {}
