@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { INature } from '../interfaces/INatures';
 import { ITeam, ITeamMember } from '../interfaces/ITeamMember';
 import { HcModal, ModalOptions, ModalService } from '@healthcatalyst/cashmere';
@@ -25,8 +25,8 @@ export class TeamBuilderComponent implements OnInit {
   revertTooltip:string = "Revert to base form";
   gigaTooltip:string = "Gigantamax!";
   alignment = 'left';
-  natureControl = new FormControl('');
-  specialFormsControl = new FormControl('');
+  natureControl = new UntypedFormControl('');
+  specialFormsControl = new UntypedFormControl('');
   addTooltip = "Add a Pokémon to your team.";
   saveTooltip: string = "Not yet implemented!";
   exportTooltip: string = "Not yet implemented!";

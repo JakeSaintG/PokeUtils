@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActiveModal } from '@healthcatalyst/cashmere';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { PokeApiService} from 'src/app/services/pokeapi.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { PokeApiService} from 'src/app/services/pokeapi.service';
 
 export class AddTeamMemberModalComponent implements OnInit  {
 
-  inputControl = new FormControl('');
+  inputControl = new UntypedFormControl('');
 
   constructor(
     public activeModal: ActiveModal, 
