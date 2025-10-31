@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActiveModal } from '@healthcatalyst/cashmere';
-import { UntypedFormControl } from '@angular/forms';
+import { FormControl, FormGroup, UntypedFormControl } from '@angular/forms';
 import { PokeApiService} from 'src/app/services/pokeapi.service';
+
+interface userInput {
+  pkmnName: string
+}
 
 @Component({
   selector: 'pkutil-add-team-member-modal',
@@ -11,17 +15,25 @@ import { PokeApiService} from 'src/app/services/pokeapi.service';
 
 export class AddTeamMemberModalComponent implements OnInit  {
 
-  inputControl = new UntypedFormControl('');
+  // inputControl = new UntypedFormControl('');
+
+  public addForm: FormGroup = new FormGroup( {
+    pkmnName: new FormControl()
+  })
 
   constructor(
     public activeModal: ActiveModal, 
     private pokeApiService: PokeApiService
   ) {}
 
-  ngOnInit(): void {};
+  ngOnInit(): void {
+    // this.inputControl.focus()
+  };
 
   async close(): Promise<void> {
-    let member = await this.pokeApiService.addMember(this.inputControl.value, "teambuilder", "");
+    const userInput: userInput = this.addForm.value; 
+    
+    let member = await this.pokeApiService.addMember(userInput.pkmnName, "teambuilder", "");
     this.activeModal.close(member);
   };
 

@@ -16,8 +16,9 @@ export class PokeApiService {
 
   constructor(private http: HttpClient) { }
 
-  addMember = async (userInput: string, location: string, guid: string): Promise<ITeamMember> => {
 
+
+  addMember = async (userInput: string, location: string, guid: string): Promise<ITeamMember> => {
     let request: string = this.filterForPokeAPI(userInput.toLowerCase());
 
     if (guid == "")  guid = UUID.UUID();
