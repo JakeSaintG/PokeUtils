@@ -1,4 +1,9 @@
 form {
     display: flex;
     flex-direction: column;
+
+    hc-label {
+        margin-bottom: 1rem;
+    }
 }
+

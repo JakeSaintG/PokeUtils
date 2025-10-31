@@ -2,10 +2,16 @@
     <hc-modal-header>Add a Pokémon to your team!</hc-modal-header>
     <hc-modal-body>
 
-        <form hcForm >
+        <form [formGroup]="addForm">
             <!-- <hc-form-field> -->
                 <hc-label>Enter the name of the Pokémon that you want to add to your team.</hc-label>
-                <input hcInput autofocus required [formControl]="inputControl" />
+                <input 
+                    hcInput
+                    hcSetFocus
+                    required
+                    formControlName="pkmnName"
+                    name="pkmnName"
+                />
             <!-- </hc-form-field> -->
         </form>
 
