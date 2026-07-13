@@ -1,8 +1,9 @@
 # PokeUtils
+This project was done as part of Health Catalyst's Open Space! It was a Hackathon early in my time there to work towards Angular mastery as well as building experience using the Cashmere open source component library.
 
 ## Pokemon Team Builder
 ### Features
-- Input your dream Pokemon into the field and watch them appear in your team! --Spelling matters. Capitalization and punctuations don't.
+- Input your dream Pokemon into the field and watch them appear in your team! --Spelling matters. Capitalization and punctuation don't.
 - Your Pokemon's name, image, and stats are visible immediately.
 - You can change the form of your Pokemon! --Galarian? Mega? Unown X? If the Pokemon has it, it's there.
 - Natures affect stats! Pick a nature and see what it does.
